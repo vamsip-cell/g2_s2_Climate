@@ -1,0 +1,300 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{margin=1in}
+
+\title{\textbf{CSE400 -- Probability}\\
+Lecture 6 (L6)}
+\author{Instructor: Dhaval Patel, PhD}
+\date{January 22, 2026}
+
+\begin{document}
+\maketitle
+
+\section{Introduction and Scope of the Scribe}
+
+These notes faithfully reconstruct \textbf{Lecture 6} as delivered in class.
+The goal is to serve as a \textbf{standalone exam reference}, reproducing
+definitions, notation, derivations, proofs, and worked examples exactly as
+presented in the lecture slides and board work.
+Only material explicitly covered in the lecture is included.
+
+\section{Random Variables}
+
+\subsection{Definition}
+
+A \textbf{random variable (RV)} $(X)$ on a sample space $(\Omega)$ is a function
+\[
+X : \Omega \to \mathbb{R}
+\]
+that assigns to each sample point $(\omega \in \Omega)$ a real number
+$(X(\omega))$.
+
+Until further notice, attention is restricted to \textbf{discrete random
+variables}, i.e., random variables whose range is finite or countably infinite.
+
+Although $(X)$ maps $(\Omega)$ to $(\mathbb{R})$, the actual set of values
+\[
+\{X(\omega) : \omega \in \Omega\}
+\]
+is a discrete subset of $(\mathbb{R})$.
+
+\subsection{Visualization of a Distribution}
+
+The distribution of a discrete random variable can be visualized using a
+\textbf{bar diagram}:
+\begin{itemize}
+  \item The x-axis represents the values the random variable can take.
+  \item The height of the bar at value $(a)$ is $\Pr[X = a]$.
+\end{itemize}
+
+Each probability is computed by identifying the corresponding event in the
+sample space.
+
+\section{Examples of Random Variables}
+
+\subsection*{Example 3.1: Tossing Three Fair Coins}
+
+\textbf{Experiment:} Toss 3 fair coins.
+
+\textbf{Random Variable:} Let $(Y)$ denote the number of heads observed.
+
+\textbf{Possible values:}
+\[
+Y \in \{0,1,2,3\}.
+\]
+
+\textbf{Probabilities:}
+\[
+\begin{aligned}
+\Pr(Y=0) &= \Pr((T,T,T)) = \tfrac{1}{8},\\
+\Pr(Y=1) &= \Pr((H,T,T),(T,H,T),(T,T,H)) = \tfrac{3}{8},\\
+\Pr(Y=2) &= \Pr((H,H,T),(H,T,H),(T,H,H)) = \tfrac{3}{8},\\
+\Pr(Y=3) &= \Pr((H,H,H)) = \tfrac{1}{8}.
+\end{aligned}
+\]
+
+\section{Probability Mass Function (PMF)}
+
+\subsection{Definition}
+
+A random variable that can take on at most a countable number of possible values
+is said to be \textbf{discrete}.
+
+Let $(X)$ be a discrete random variable with range
+\[
+R_X = \{x_1, x_2, x_3, \ldots\}.
+\]
+
+The function
+\[
+p_X(x_k) = \Pr(X = x_k), \quad k = 1,2,3,\ldots
+\]
+is called the \textbf{Probability Mass Function (PMF)} of $(X)$.
+
+Since $(X)$ must take exactly one of these values,
+\[
+\sum_k p_X(x_k) = 1.
+\]
+
+\subsection{PMF Example}
+
+\textbf{Example 4.1:} Two independent tosses of a fair coin.
+
+The PMF was constructed by enumerating outcomes and assigning probabilities
+accordingly.
+
+\subsection{PMF with Unknown Constant}
+
+\textbf{Example 4.2:}
+
+The PMF of a random variable $(X)$ is given by
+\[
+p(i) = C e^{-\lambda i}, \quad i = 0,1,2,\ldots
+\]
+where $\lambda > 0$.
+
+\textbf{Step 1: Find $(C)$}
+\[
+\sum_{i=0}^{\infty} C e^{-\lambda i} = 1.
+\]
+Using the geometric series,
+\[
+\sum_{i=0}^{\infty} e^{-\lambda i} = \frac{1}{1 - e^{-\lambda}},
+\]
+we get
+\[
+C = 1 - e^{-\lambda}.
+\]
+
+\textbf{Step 2: Compute probabilities}
+\[
+\Pr(X>2) = 1 - \Pr(X=0) - \Pr(X=1) - \Pr(X=2).
+\]
+
+\section{Bayes' Theorem}
+
+\subsection{Statement (Recap)}
+
+Using
+\[
+\Pr(A \cap B_i) = \Pr(B_i | A)\Pr(A),
+\]
+we obtain the \textbf{Bayes Formula}:
+\[
+\Pr(B_i | A) =
+\frac{\Pr(A | B_i)\Pr(B_i)}
+{\sum_j \Pr(A | B_j)\Pr(B_j)}.
+\]
+
+\begin{itemize}
+  \item $\Pr(B_i)$: \emph{a priori probability}
+  \item $\Pr(B_i|A)$: \emph{posteriori probability}
+\end{itemize}
+
+\subsection{Example 5.1: Auditorium with 30 Rows}
+
+\begin{itemize}
+  \item Row 1 has 11 seats, Row 2 has 12 seats, $\ldots$, Row 30 has 40 seats.
+  \item A row is chosen uniformly at random.
+  \item A seat is chosen uniformly at random within the selected row.
+\end{itemize}
+
+\textbf{Tasks:}
+\begin{enumerate}
+  \item Compute $\Pr(\text{Seat 15} \mid \text{Row 20})$.
+  \item Compute $\Pr(\text{Row 20} \mid \text{Seat 15})$.
+\end{enumerate}
+
+These were computed using Bayes' theorem exactly as shown in lecture.
+
+\subsection{Example 5.2: Communication System}
+
+A binary communication system transmits bits $0$ or $1$.
+
+\textbf{Conditional probabilities:}
+\[
+\begin{aligned}
+\Pr(0 \text{ received }|0 \text{ transmitted}) &= 0.95,\\
+\Pr(1 \text{ received }|0 \text{ transmitted}) &= 0.05,\\
+\Pr(0 \text{ received }|1 \text{ transmitted}) &= 0.10,\\
+\Pr(1 \text{ received }|1 \text{ transmitted}) &= 0.90.
+\end{aligned}
+\]
+
+\textbf{Questions addressed in lecture:}
+\begin{enumerate}
+  \item Find $\Pr(0 \text{ received})$ and $\Pr(1 \text{ received})$.
+  \item Given a received bit, find the probability of the transmitted bit.
+  \item Find the overall probability of error.
+\end{enumerate}
+
+All results were derived step by step using Bayes' theorem.
+
+\section{Independent Events}
+
+\subsection{Definition}
+
+Two events $(A)$ and $(B)$ are \textbf{independent} if
+\[
+\Pr(A|B) = \Pr(A)
+\quad \text{and} \quad
+\Pr(B|A) = \Pr(B).
+\]
+
+Equivalently,
+\[
+\Pr(A \cap B) = \Pr(A)\Pr(B).
+\]
+
+\subsection{Example: Modified Auditorium}
+
+If each row has the same number of seats:
+\begin{itemize}
+  \item Let $(A)$ = Row 20 selected
+  \item Let $(B)$ = Seat 15 selected
+\end{itemize}
+
+\textbf{Conclusion:} Event $(B)$ provides no additional information about $(A)$.
+Hence, $(A)$ and $(B)$ are independent.
+
+\subsection{Mutual Independence}
+
+Events $(A,B,C)$ are \textbf{mutually independent} if
+\[
+\Pr(A,B)=\Pr(A)\Pr(B), \quad
+\Pr(A,C)=\Pr(A)\Pr(C), \quad
+\Pr(B,C)=\Pr(B)\Pr(C),
+\]
+and
+\[
+\Pr(A,B,C)=\Pr(A)\Pr(B)\Pr(C).
+\]
+
+\subsection{Communication Network Examples}
+
+\begin{itemize}
+  \item Probability of successful transmission is computed using independence
+        of link availability.
+  \item Modified networks were analyzed by enumerating disjoint successful paths.
+\end{itemize}
+
+\section{Types of Discrete Random Variables}
+
+\subsection{Bernoulli Random Variable}
+
+\textbf{Experiment:} Outcome is Success or Failure.
+
+\textbf{Definition:}
+\[
+X =
+\begin{cases}
+1, & \text{Success} \\
+0, & \text{Failure}
+\end{cases}
+\]
+
+\textbf{PMF:}
+\[
+\Pr(X=1)=p, \quad \Pr(X=0)=1-p, \quad p\in(0,1).
+\]
+
+\textbf{Examples:}
+\begin{itemize}
+  \item Single coin toss
+  \item Spam classification
+\end{itemize}
+
+\subsection{Binomial Random Variable}
+
+\textbf{Experiment:} $n$ independent trials, each with success probability $p$.
+
+\textbf{Random Variable:} $(X)$ = number of successes.
+
+\textbf{Notation:} $X \sim B(n,p)$.
+
+\textbf{PMF:}
+\[
+\Pr(X=i) = \binom{n}{i}p^i(1-p)^{n-i},
+\quad i=0,1,\ldots,n.
+\]
+
+\subsection{Geometric Random Variable}
+
+\textbf{Experiment:} Independent trials performed until first success.
+
+\textbf{Random Variable:} $(X)$ = number of trials until success.
+
+The PMF was derived in lecture.
+
+\section{End Notes}
+
+\begin{itemize}
+  \item All results are restricted to material explicitly covered in Lecture 6.
+  \item Proofs, derivations, and examples follow the lecture slides and board
+        explanations exactly.
+  \item This scribe is intended for \textbf{exam revision and reference}.
+\end{itemize}
+
+\end{document}
