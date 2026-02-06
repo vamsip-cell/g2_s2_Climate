@@ -1,0 +1,34 @@
+A lecture scribe is a faithful, exam-ready reconstruction of what was taught in class. It must function as standalone reference material that a student can rely on while studying.
+A correct lecture scribe must allow a student to:
+Recall definitions and notation
+Reconstruct proofs and derivations
+Follow worked examples step by step
+Understand logical dependencies between concepts
+The scribe must answer the question:
+“If I study only this document, can I reliably revise what was taught?”
+One-Shot Prompting Rule
+You are given exactly one example lecture scribe.
+This example defines structure only, not content.
+Use exactly one example
+The example is short, generic, and unrelated to the current lecture
+The example must remain unchanged
+Do not embed explanations, commentary, or reasoning inside the example
+Required Instruction
+Using the same structure as the provided example lecture scribe, generate a lecture scribe for the given lecture context.
+The generated scribe must:
+Be exam-ready and self-contained
+Follow the example’s structure exactly
+Preserve the lecture’s logical flow and dependencies
+Content Constraints
+Include only what appears in the provided lecture context.
+When present in the lecture, include:
+Definitions and notation
+Assumptions and conditions
+Statements of theorems or results
+Proofs or proof sketches, step by step
+Worked examples with intermediate steps
+Do not add, infer, simplify, or omit material.
+Provided Materials
+Example lecture scribe (structure only): lecture1.pdf
+Lecture context to scribe: L6 (ilovepdf_merged)
+Generate the lecture scribe now.
