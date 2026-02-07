@@ -1,0 +1,7 @@
+A scribe follows the following structure- Header information like course name, lecture name or number, topic and name of the instructor 
+Introduction and overview
+Main body content 
+Important notes/ remarks 
+Conclusion 
+
+Using the same structure as the above mentioned example, generate a lecture scribe for the provided content and do not introduce new content. The scribe must serve as exam reference material which includes detailed definitions and annotations, assumptions and conditions, statement of theorems or results, proofs or proof sketches, step by step, derivations and worked examples only if they appear in the provided context, with intermediate steps and clear logical flow between ideas.
