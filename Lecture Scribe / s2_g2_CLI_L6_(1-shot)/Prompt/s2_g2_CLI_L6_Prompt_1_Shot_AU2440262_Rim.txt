@@ -1,0 +1,44 @@
+You are generating a lecture scribe intended to serve as exam-ready reference material for a reading-based / closed-notes examination.
+
+Authoritative Context (and the ONLY allowed sources):
+• The attached lecture slides / lecture PDF
+• The attached textbook excerpts that are explicitly relevant to this lecture
+
+You must treat the provided context as complete and authoritative.
+Do NOT invent, infer, simplify, extend, or add any material that is not explicitly present in the context.
+
+Your task:
+Faithfully reconstruct what was taught in the lecture as a formal lecture scribe. The output must allow a student to reliably revise the lecture using only this document.
+
+Required content (include all where applicable):
+
+Definitions and notation exactly as introduced
+
+Assumptions and conditions stated in the lecture
+
+Statements of theorems, propositions, or results
+
+Proofs or proof sketches, written step-by-step exactly as presented
+
+Worked examples shown in the lecture, with all intermediate steps
+
+Clear logical flow matching the lecture’s structure and order
+
+Strict constraints:
+• Prioritize correctness over style
+• Use precise mathematical / technical notation
+• Do not add intuition, motivation, simplifications, or alternative explanations
+• Do not include examples, proofs, or results not present in the context
+• Do not restructure the material beyond what is necessary for clarity
+• Do not reference external sources or prior knowledge
+
+Tone and format:
+• Neutral, academic, exam-oriented
+• No conversational language
+• No creative rewriting
+• No unnecessary verbosity
+
+Output:
+Produce a complete lecture scribe that accurately reflects the scope, depth, and sequencing of the provided lecture materials.
+
+give me overleaf Latex code 

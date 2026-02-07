@@ -1,0 +1,228 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{CSE400: Fundamentals of Probability in Computing\\
+Lecture 6: Discrete Random Variables, Expectation and Problem Solving}
+\author{Dhaval Patel, PhD\\
+Associate Professor\\
+Computer Science and Engineering (CSE)}
+\date{January 22, 2025}
+
+\begin{document}
+\maketitle
+
+\section*{Lecture Outline}
+\begin{itemize}
+    \item Random Variables (RVs): Definition and Concept
+    \item Types of Random Variables
+    \item Discrete Random Variables
+    \item Probability Mass Function (PMF)
+    \item Examples of Discrete Random Variables
+    \item Bayes’ Theorem (Recap and Example)
+\end{itemize}
+
+\section{Random Variables}
+
+\subsection{Definition}
+A \textbf{random variable} $X$ on a sample space $\Omega$ is a function
+\[
+X : \Omega \rightarrow \mathbb{R}
+\]
+that assigns to each sample point $\omega \in \Omega$ a real number $X(\omega)$.
+
+\subsection{Discrete Random Variables}
+In this lecture, we restrict attention to \textbf{discrete random variables}.  
+A random variable is said to be discrete if it takes values in a range that is finite or countably infinite.
+
+Although $X$ is defined as a function mapping into $\mathbb{R}$, the actual set of values
+\[
+\{X(\omega) : \omega \in \Omega\}
+\]
+is a discrete subset of $\mathbb{R}$.
+
+\section{Distribution of a Discrete Random Variable}
+
+The distribution of a discrete random variable can be visualized using a bar diagram:
+\begin{itemize}
+    \item The $x$-axis represents the values that the random variable can take.
+    \item The height of the bar at value $a$ represents $\Pr[X = a]$.
+\end{itemize}
+
+Each probability $\Pr[X = a]$ is computed by evaluating the probability of the corresponding event in the sample space.
+
+\section{Types of Random Variables}
+
+\subsection{Discrete Random Variables}
+Characteristics:
+\begin{itemize}
+    \item Countable support
+    \item Probability Mass Function (PMF)
+    \item Probabilities are assigned to individual values
+    \item Each possible value has strictly positive probability
+\end{itemize}
+
+\subsection{Continuous Random Variables}
+Characteristics:
+\begin{itemize}
+    \item Uncountable support
+    \item Probability Density Function (PDF)
+    \item Probabilities are assigned to intervals
+    \item Each individual value has probability zero
+\end{itemize}
+
+\section{Example 1: Tossing Three Fair Coins}
+
+Suppose an experiment consists of tossing three fair coins.
+
+Let $Y$ denote the number of heads that appear.
+
+Then $Y$ is a random variable that can take values
+\[
+\{0, 1, 2, 3\}.
+\]
+
+\subsection*{Computation of Probabilities}
+
+\[
+\Pr(Y = 0) = \Pr((t,t,t)) = \frac{1}{8}
+\]
+
+\[
+\Pr(Y = 1) = \Pr((t,t,h),(t,h,t),(h,t,t)) = \frac{3}{8}
+\]
+
+\[
+\Pr(Y = 2) = \Pr((t,h,h),(h,t,h),(h,h,t)) = \frac{3}{8}
+\]
+
+\[
+\Pr(Y = 3) = \Pr((h,h,h)) = \frac{1}{8}
+\]
+
+Since $Y$ must take one of the values $0$ through $3$, we have
+\[
+1 = \Pr\left(\bigcup_{i=0}^{3} \{Y = i\}\right)
+  = \sum_{i=0}^{3} \Pr(Y = i).
+\]
+
+\section{Probability Mass Function (PMF)}
+
+\subsection{Definition}
+A random variable that can take at most a countable number of possible values is said to be \textbf{discrete}.
+
+Let $X$ be a discrete random variable with range
+\[
+R_X = \{x_1, x_2, x_3, \dots\}
+\]
+where the range is finite or countably infinite.
+
+The function
+\[
+P_X(x_k) = \Pr(X = x_k), \quad k = 1,2,3,\dots
+\]
+is called the \textbf{Probability Mass Function (PMF)} of $X$.
+
+\subsection{Property of PMF}
+Since $X$ must take one of the values $x_k$, we have
+\[
+\sum_{k=1}^{\infty} P_X(x_k) = 1.
+\]
+
+\section{PMF Example}
+
+Let the probability mass function of a random variable $X$ be given by
+\[
+p(i) = c \frac{\lambda^i}{i!}, \quad i = 0,1,2,\dots
+\]
+where $\lambda > 0$.
+
+\subsection*{Step 1: Find the constant $c$}
+
+Since $\sum_{i=0}^{\infty} p(i) = 1$, we have
+\[
+c \sum_{i=0}^{\infty} \frac{\lambda^i}{i!} = 1.
+\]
+
+Using the identity
+\[
+e^{\lambda} = \sum_{i=0}^{\infty} \frac{\lambda^i}{i!},
+\]
+we obtain
+\[
+c e^{\lambda} = 1 \quad \Rightarrow \quad c = e^{-\lambda}.
+\]
+
+\subsection*{Step 2: Compute $\Pr(X = 0)$}
+\[
+\Pr(X = 0) = e^{-\lambda} \frac{\lambda^0}{0!} = e^{-\lambda}.
+\]
+
+\subsection*{Step 3: Compute $\Pr(X > 2)$}
+\[
+\Pr(X > 2) = 1 - \Pr(X \le 2)
+\]
+\[
+= 1 - \Pr(X=0) - \Pr(X=1) - \Pr(X=2).
+\]
+
+\section{Bayes’ Theorem}
+
+\subsection{Recall}
+Using
+\[
+\Pr(A \cap B) = \Pr(B \mid A)\Pr(A),
+\]
+we obtain
+\[
+\Pr(B_i \mid A) = 
+\frac{\Pr(A \mid B_i)\Pr(B_i)}
+{\sum_{j=1}^{n} \Pr(A \mid B_j)\Pr(B_j)}.
+\]
+
+This is known as the \textbf{Bayes Formula (Proposition 3.1)}.
+
+\subsection{Terminology}
+\begin{itemize}
+    \item $\Pr(B_i)$ is the \textbf{a priori probability}
+    \item $\Pr(B_i \mid A)$ is the \textbf{posterior probability}
+\end{itemize}
+
+\section{Bayes’ Theorem Example: Auditorium with 30 Rows}
+
+An auditorium has 30 rows of seats.
+
+\begin{itemize}
+    \item Row 1 has 11 seats
+    \item Row 2 has 12 seats
+    \item Row 3 has 13 seats
+    \item $\dots$
+    \item Row 30 has 40 seats
+\end{itemize}
+
+A door prize is awarded by:
+\begin{enumerate}
+    \item Randomly selecting a row (each row equally likely)
+    \item Randomly selecting a seat within that row
+\end{enumerate}
+
+\subsection*{Given}
+\[
+\Pr(R_k) = \frac{1}{30}
+\]
+
+\subsection*{Compute}
+\[
+\Pr(S_{15} \mid R_{20}) = \frac{1}{30}
+\]
+
+\subsection*{Bayes’ Computation}
+\[
+\Pr(R_{20} \mid S_{15}) =
+\frac{\Pr(S_{15} \mid R_{20}) \Pr(R_{20})}
+{\sum_{k=1}^{30} \Pr(S_{15} \mid R_k)\Pr(R_k)}
+\]
+
+\end{document}
