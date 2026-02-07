@@ -1,0 +1,263 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{setspace}
+\usepackage{enumitem}
+
+\setstretch{1.2}
+
+\title{\textbf{Lecture 6 Scribe}\\
+Discrete Random Variables and Expectation}
+
+\author{
+\textbf{Dhruvi Faldu} \\
+\vspace{0.3cm}
+\textit{Instructor: Prof. Dhaval Patel}
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Overview}
+This lecture covers the concept of random variables with emphasis on discrete
+random variables. Topics include probability mass functions (PMFs),
+cumulative distribution functions (CDFs), Bayes’ Theorem, independent events,
+and standard types of discrete random variables such as Bernoulli, Binomial,
+Geometric, and Poisson random variables, along with worked examples
+presented in the lecture.
+
+\section{Definitions and Notation}
+
+\subsection*{Random Variable}
+A random variable $X$ on a sample space $\Omega$ is a function:
+\[
+X : \Omega \rightarrow \mathbb{R}
+\]
+assigning a real number to each sample point $\omega \in \Omega$.
+
+In this lecture, attention is restricted to discrete random variables, i.e.,
+random variables that take values in a finite or countably infinite subset of
+$\mathbb{R}$.
+
+\subsection*{Probability Mass Function (PMF)}
+A random variable that can take on at most a countable number of possible
+values is said to be discrete.
+
+Let $X$ be a discrete random variable with range
+\[
+R_X = \{x_1, x_2, x_3, \dots\}.
+\]
+The function
+\[
+P_X(x_k) = P(X = x_k), \quad k = 1,2,3,\dots
+\]
+is called the Probability Mass Function (PMF) of $X$.
+
+Since $X$ must take on one of its possible values,
+\[
+\sum_k P_X(x_k) = 1.
+\]
+
+\subsection*{Cumulative Distribution Function (CDF)}
+The cumulative distribution function of a random variable $X$ is defined as:
+\[
+F_X(x) = P(X \le x).
+\]
+(Properties and examples were discussed in the lecture.)
+
+\subsection*{Bayes’ Theorem}
+Using
+\[
+P(A \cap B_i) = P(B_i \mid A)P(A),
+\]
+we get
+\[
+P(B_i \mid A) =
+\frac{P(A \mid B_i)P(B_i)}
+{\sum_j P(A \mid B_j)P(B_j)}.
+\]
+
+This is known as Bayes’ Formula.
+
+\begin{itemize}
+    \item $P(B_i)$: a priori probability
+    \item $P(B_i \mid A)$: posteriori probability
+\end{itemize}
+
+\subsection*{Independent Events}
+Two events $A$ and $B$ are independent if
+\[
+P(A \mid B) = P(A), \quad P(B \mid A) = P(B).
+\]
+
+Equivalently,
+\[
+P(A \cap B) = P(A)P(B).
+\]
+
+For three events $A$, $B$, and $C$, they are mutually independent if:
+\[
+P(A \cap B) = P(A)P(B),
+\]
+\[
+P(A \cap C) = P(A)P(C),
+\]
+\[
+P(B \cap C) = P(B)P(C),
+\]
+\[
+P(A \cap B \cap C) = P(A)P(B)P(C).
+\]
+
+\section{Main Results}
+
+\subsection*{Bernoulli Random Variable}
+Let $X$ be a random variable defined as:
+\[
+X =
+\begin{cases}
+1 & \text{(Success)} \\
+0 & \text{(Failure)}
+\end{cases}
+\]
+
+$X$ is a Bernoulli random variable with parameter $p \in (0,1)$ if:
+\[
+P(X=1)=p, \quad P(X=0)=1-p.
+\]
+
+\subsection*{Binomial Random Variable}
+Let $n$ independent trials be performed, each resulting in success with
+probability $p$.
+
+Let $X$ denote the number of successes in $n$ trials. Then
+\[
+X \sim B(n,p).
+\]
+
+PMF:
+\[
+P(X=i) = \binom{n}{i} p^i (1-p)^{n-i}, \quad i=0,1,\dots,n.
+\]
+
+\subsection*{Geometric Random Variable}
+Independent trials are performed until the first success occurs, with success
+probability $p$.
+
+Let $X$ denote the number of trials required for the first success. Then:
+\[
+P(X=n) = (1-p)^{n-1}p, \quad n=1,2,\dots
+\]
+
+\subsection*{Poisson Random Variable}
+A random variable $X$ taking values $\{0,1,2,\dots\}$ is said to be a Poisson
+random variable with parameter $\lambda > 0$ if:
+\[
+P(X=i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,2,\dots
+\]
+
+and
+\[
+\sum_i P(X=i) = 1.
+\]
+
+(Note: Poisson RV can approximate a Binomial RV when $n$ is large and $p$ is
+small such that $np$ is moderate.)
+
+\section{Proofs and Derivations}
+
+\subsection*{PMF Normalization}
+For a valid PMF:
+\[
+\sum_i p(i) = 1.
+\]
+
+This condition was verified explicitly in examples for discrete distributions
+(including Poisson).
+
+\section{Worked Examples}
+
+\subsection*{Example 1: Tossing Three Fair Coins}
+Let $Y$ denote the number of heads when three fair coins are tossed.
+
+Possible values: $\{0,1,2,3\}$.
+
+\[
+P(Y=0)=\frac{1}{8}, \quad
+P(Y=1)=\frac{3}{8}, \quad
+P(Y=2)=\frac{3}{8}, \quad
+P(Y=3)=\frac{1}{8}.
+\]
+
+\subsection*{Example 2: PMF with Constant $c$}
+Given:
+\[
+p(i) = \frac{c}{i!}, \quad i=0,1,2,\dots
+\]
+
+Using:
+\[
+\sum_i p(i) = 1
+\Rightarrow c \sum_i \frac{1}{i!} = 1.
+\]
+
+Since $\sum_i \frac{1}{i!} = e$,
+\[
+c = e^{-1}.
+\]
+
+\[
+P(X=0)=e^{-1}.
+\]
+
+\[
+P(X>2)=1-[P(X=0)+P(X=1)+P(X=2)].
+\]
+
+\subsection*{Example 3: Bayes’ Theorem – Auditorium Problem}
+An auditorium has 30 rows, with row $i$ having $(10+i)$ seats.
+
+A row is selected uniformly, then a seat uniformly within that row.
+
+Computed:
+\[
+P(\text{Seat }15 \mid \text{Row }20), \quad
+P(\text{Row }20 \mid \text{Seat }15).
+\]
+
+\subsection*{Example 4: Communication System}
+Using given conditional probabilities, the following were computed:
+\begin{itemize}
+    \item $P(0 \text{ received})$
+    \item $P(1 \text{ received})$
+    \item $P(\text{transmitted bit} \mid \text{received bit})$
+    \item Overall probability of error
+\end{itemize}
+
+\subsection*{Example 5: Geometric RV (Urn Problem)}
+An urn contains $N$ white and $M$ black balls. Sampling is done with
+replacement until the first black ball appears.
+
+Let $X$ be the number of draws required.
+
+\[
+p = \frac{M}{M+N}.
+\]
+
+\[
+P(X=n) = \left(\frac{N}{M+N}\right)^{n-1}
+\left(\frac{M}{M+N}\right).
+\]
+
+\section{Summary}
+This lecture introduced discrete random variables, PMFs, CDFs, Bayes’
+Theorem, and independence of events. Standard discrete distributions—
+Bernoulli, Binomial, Geometric, and Poisson—were defined along with their
+PMFs and applications. Several worked examples illustrated probability
+calculations based on these concepts.
+
+\end{document}
