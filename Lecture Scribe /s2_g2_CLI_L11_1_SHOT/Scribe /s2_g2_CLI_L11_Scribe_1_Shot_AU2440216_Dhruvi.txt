@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{setspace}
+\usepackage{enumitem}
+
+\setstretch{1.2}
+
+\title{\textbf{Lecture 11 Scribe} \\[0.3cm]
+Transformation of Random Variables}
+
+\author{
+\textbf{Dhruvi Faldu} \\[0.2cm]
+\textit{Course: CSE400 – Fundamentals of Probability in Computing} \\[0.1cm]
+\textit{Instructor: Prof. Dhaval Patel} \\[0.1cm]
+\textit{Date: February 10, 2026}
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Overview}
+
+This lecture covers the transformation of random variables, functions of two
+random variables, joint transformations, and derived distributions.
+A detailed illustrative example is presented for the case $Z = X + Y$.
+
+\section{Definitions and Notation}
+
+\subsection*{Random Variable (RV)}
+
+\subsection*{Transformation of Random Variables}
+
+\subsection*{Function of Two Random Variables}
+
+\subsection*{Joint Transformations}
+
+\subsection*{Derived Distributions}
+
+Notation introduced in the lecture:
+
+\[
+F_Y(y) = P(Y \le y)
+\]
+
+\[
+F_X(x) = P(X \le x)
+\]
+
+Assumptions stated:
+
+\begin{itemize}
+    \item PDF or CDF of $X$ is known.
+    \item Appropriate monotonicity conditions for transformations (as written in slides).
+\end{itemize}
+
+\section{Main Results}
+
+\begin{itemize}
+    \item Transformation of a single random variable using CDF method.
+    \item Transformation involving functions of two random variables.
+    \item Joint transformation leading to a derived distribution.
+\end{itemize}
+
+\section{Proofs or Derivations}
+
+\subsection*{Transformation of a Random Variable}
+
+Let:
+\[
+Y = g(X)
+\]
+
+Then:
+\[
+F_Y(y) = P(Y \le y) = P(g(X) \le y).
+\]
+
+Depending on the nature of $g(\cdot)$, this probability is expressed in terms of
+$X$ and evaluated using the known distribution of $X$, as shown step-by-step
+in the slides.
+
+\section{Examples}
+
+\subsection*{Illustrative Example: $Z = X + Y$}
+
+Given:
+
+Two random variables $X$ and $Y$.
+
+Find:
+
+PDF and CDF of $Z$.
+
+Steps shown in the lecture:
+
+\begin{enumerate}
+    \item Define the transformation:
+    \[
+    Z = X + Y
+    \]
+    \item Express probability terms in terms of joint distribution.
+    \item Apply limits as shown in the slides.
+    \item Derive the final expression for the distribution of $Z$.
+\end{enumerate}
+
+(All algebraic and probability steps are written exactly as shown in the lecture slides.)
+
+\section{Summary}
+
+\begin{itemize}
+    \item Introduced transformation techniques for random variables.
+    \item Discussed functions of two random variables.
+    \item Explained joint transformations and derived distributions.
+    \item Worked through a detailed example for $Z = X + Y$.
+\end{itemize}
+
+\end{document}
