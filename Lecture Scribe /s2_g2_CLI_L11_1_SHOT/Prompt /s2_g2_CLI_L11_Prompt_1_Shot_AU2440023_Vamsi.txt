@@ -1,0 +1,22 @@
+A lecture scribe is a faithful, exam-ready reconstruction of what was taught in
+class, written so that a student can later rely on it as reference material while studying.
+A correct lecture scribe should allow a student to:
+• Recall definitions and notation
+• Reconstruct proofs and derivations
+• Follow example solutions step by step
+• Understand logical dependencies between concepts
+A lecture scribe should answer the question:
+“If I study only this document, can I reliably revise what was taught?”
+7.1 What One-Shot Prompting Means One-shot prompting means you provide exactly one example of a lecture scribe to illus- trate the expected structure of the output. The example clarifies structure, not content. 7.2 Required One-Shot Prompt Components Your prompt must clearly include: 1. A single, clearly labeled example lecture scribe 2. An instruction directing the model to follow the example’s structure 3. The purpose of the scribe and scope constraints 4 7.3 What You Must Do (One-Shot) You must: • Use exactly one example scribe • Ensure the example is short, generic, and unrelated to the current lecture • Keep the example unchanged for the entire semester 7.4 What You Must NOT Do (One-Shot) You must not: • Provide more than one example • Modify or refine the example over time • Embed explanations, commentary, or reasoning inside the example 7.5 Valid One-Shot Prompt (Illustrative) Example Lecture Scribe (structure only): Short generic scribe excerpt (Any well-written scribe) Using the same structure, generate a lecture scribe for the provided context. The scribe should function as exam reference material and include proofs, derivations, and worked examples exactly as presented in the lecture. 7.6 How One-Shot Improvement Happens Improvement occurs through: • better alignment between the example and the task instruction • clearer and more disciplined constraints the scribe is intended for exam reference. • Proofs, derivations, and worked examples are included only if they appear in the provided context. • The context (lecture slides / Textbook excerpts) must be unchanged. • I did not mix or borrow elements from other prompting styles make a lecture scribe using these guidelines
+The scribe should include:
+• Definitions and notation
+• Assumptions and conditions
+1
+• Statements of theorems or results
+• Proofs or proof sketches, step by step
+• Worked examples, with intermediate steps
+• Clear logical flow between ideas
+i have also attached the example scribe (named lecture1.pdf)
+Using the same structure, generate a lecture scribe for the L11 . The
+scribe should function as exam reference material and include proofs, derivations,
+and worked examples exactly as presented in the lecture.
