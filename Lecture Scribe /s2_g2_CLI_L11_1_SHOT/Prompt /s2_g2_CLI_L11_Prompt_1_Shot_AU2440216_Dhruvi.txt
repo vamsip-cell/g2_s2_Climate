@@ -1,0 +1,18 @@
+I want you to generate a lecture scribe for Lecture 11 that I can use as exam reference material. 
+The scribe should be an exact reformation of what was taught in the lecture, so that I can revise the lecture only from this document. 
+Please use only the provided lecture slides and any textbook content that is directly part of those slides. 
+Do not add explanations, examples, intuition, or material that is not present in the lecture. 
+lect01 is one example lecture scribe. 
+This example is provided just to show the expected structure and organization of a lecture scribe. 
+Its content is not at all related to Lecture 11 and should not affect the actual material written. 
+Example Lecture Scribe (structure only): Lecture __ 
+1. Overview: Brief outline of the topics covered in the lecture. 
+2. Definitions and Notation: All definitions, symbols, and assumptions introduced in the lecture. 
+3. Main Results: Statements of theorems, propositions, or results as presented. 
+4. Proofs or Derivations: Step-by-step proofs or derivations exactly as shown in the lecture, including stated assumptions and intermediate steps. 
+5. Examples: Examples discussed in the lecture, written step by step without adding or removing steps. 
+6. Summary: Short recap of the lecture content. 
+Using the same structure as the example above, generate a lecture scribe for Lecture 11. 
+The scribe should be organized clearly for exam preparation and must include definitions, assumptions, proofs, derivations, and worked examples only if 
+they are present in the provided lecture material. 
+Do not invent or infer any content beyond what is given.

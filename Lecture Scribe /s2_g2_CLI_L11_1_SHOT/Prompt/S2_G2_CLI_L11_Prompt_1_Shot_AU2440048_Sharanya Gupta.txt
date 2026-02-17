@@ -1,0 +1,7 @@
+I want you to generate a lecture scribe with the material provided. the scribe should serve as an exam reference material which includes detailed definitions and annotations, assumptions and conditions, statement of theorems or results, proofs or proof sketches, step by step derivations and worked examples only if they appear in the provided content, with intermediate steps and clear logical flow. Do not introduce new content. 
+follow the below structure for the scribe to be generated-
+Header information like course name, lecture name or number, topic and name of the instructor
+Introduction and overview- which includes brief outline of all the topics covered during the lecture 
+main body content- which includes the above mentioned content requirements 
+important notes/ remarks 
+conclusion

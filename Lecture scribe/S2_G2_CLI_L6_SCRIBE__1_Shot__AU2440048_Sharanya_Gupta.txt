@@ -1,0 +1,300 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\begin{document}
+
+Below is a complete lecture scribe generated strictly from the provided PDF content, following exactly the structure you specified and written as exam-oriented reference material.  
+No new concepts, examples, or results have been introduced beyond what appears in the slides and annotations.  
+(Page numbers are mentioned to help you trace content in the slides.)
+
+\section*{Lecture Scribe}
+
+\subsection*{Header Information}
+
+\textbf{Course Name:} CSE400 – Fundamentals of Probability in Computing  
+
+\textbf{Lecture Number \& Title:} Lecture 6 – Discrete Random Variables, Expectation and Problem Solving  
+
+\textbf{Primary Topics Covered:}  
+Random Variables, PMF, Bayes’ Theorem, Independent Events, Types of Discrete Random Variables (Bernoulli, Binomial, Geometric, Poisson)  
+
+\textbf{Instructor:} Dr. Dhaval Patel, PhD (Associate Professor, CSE)  
+
+\textbf{Institution:} SEAS, Ahmedabad University, India  
+
+\textbf{Date:} January 22, 2025  
+
+L6\_S2\_A
+
+\subsection*{Introduction and Overview}
+
+This lecture develops the formal framework of random variables, focusing primarily on discrete random variables and their associated probability models. The lecture begins by defining random variables as functions on a sample space and motivates their use through visual and probabilistic interpretations.
+
+Subsequently, the lecture introduces the Probability Mass Function (PMF) and establishes its fundamental properties. Using this foundation, Bayes’ Theorem is revisited and applied to practical examples. The notion of independent events is formally defined and examined through communication network examples.
+
+The lecture concludes with a systematic treatment of the main classes of discrete random variables—Bernoulli, Binomial, Geometric, and Poisson—along with their assumptions, PMFs, and applications.
+
+\subsection*{Main Body Content}
+
+\subsubsection*{1. Random Variables: Motivation and Definition}
+
+\textbf{Definition:}  
+A random variable $X$ on a sample space $\Omega$ is a function
+\[
+X : \Omega \rightarrow \mathbb{R}
+\]
+that assigns a real number to each outcome $\omega \in \Omega$.
+
+Although $X$ maps into $\mathbb{R}$, in this lecture we restrict attention to discrete random variables, meaning the set of values $\{X(\omega)\}$ is finite or countably infinite.
+
+\textbf{Interpretation:}
+\begin{itemize}
+\item Outcomes in the sample space are abstract.
+\item A random variable converts outcomes into numerical values.
+\item Multiple outcomes may map to the same value of the random variable.
+\end{itemize}
+
+\subsubsection*{2. Discrete vs Continuous Random Variables}
+
+\textbf{Discrete Random Variables}
+\begin{itemize}
+\item Countable support
+\item Probabilities assigned to individual values
+\item Characterized by a Probability Mass Function (PMF)
+\end{itemize}
+
+\textbf{Continuous Random Variables}
+\begin{itemize}
+\item Uncountable support
+\item Probabilities assigned to intervals
+\item Characterized by a Probability Density Function (PDF)
+\end{itemize}
+
+\subsubsection*{3. Example: Tossing Three Fair Coins}
+
+Let $Y$ be the number of heads obtained when three fair coins are tossed.
+
+\textbf{Possible values:}
+\[
+Y \in \{0,1,2,3\}
+\]
+
+\textbf{Probabilities (computed by enumerating sample points):}
+\[
+P(Y=0)=\frac{1}{8}, \quad
+P(Y=1)=\frac{3}{8}, \quad
+P(Y=2)=\frac{3}{8}, \quad
+P(Y=3)=\frac{1}{8}
+\]
+
+\textbf{Normalization condition:}
+\[
+\sum_{i=0}^{3} P(Y=i)=1
+\]
+
+This validates the legitimacy of the PMF.
+
+\subsubsection*{4. Probability Mass Function (PMF)}
+
+\textbf{Definition:}  
+Let $X$ be a discrete random variable with range
+\[
+R_X=\{x_1,x_2,x_3,\ldots\}
+\]
+
+The function
+\[
+P_X(x_k)=P(X=x_k), \quad k=1,2,3,\ldots
+\]
+is called the Probability Mass Function (PMF) of $X$.
+
+\textbf{Key Property (Normalization):}
+\[
+\sum_{k=1}^{\infty} P_X(x_k)=1
+\]
+
+\subsubsection*{5. PMF Example with Parameter $\lambda$}
+
+Given:
+\[
+p(i)=c\frac{\lambda^i}{i!}, \quad i=0,1,2,\ldots
+\]
+
+Using the identity:
+\[
+\sum_{i=0}^{\infty}\frac{\lambda^i}{i!}=e^{\lambda}
+\]
+
+\textbf{Step-by-step derivation:}
+\[
+\sum_{i=0}^{\infty} p(i)=c e^{\lambda}=1 \Rightarrow c=e^{-\lambda}
+\]
+
+Thus,
+\[
+P(X=0)=e^{-\lambda}
+\]
+
+For:
+\[
+P(X>2)=1-P(X\le2)=1-[P(X=0)+P(X=1)+P(X=2)]
+\]
+
+\subsubsection*{6. Bayes’ Theorem}
+
+\textbf{Bayes’ Formula (Proposition 3.1):}
+\[
+P(B_i\mid A)=
+\frac{P(A\mid B_i)P(B_i)}
+{\sum_{j=1}^{n}P(A\mid B_j)P(B_j)}
+\]
+
+\textbf{Interpretation:}
+\begin{itemize}
+\item $P(B_i)$: Prior probability
+\item $P(B_i\mid A)$: Posterior probability after observing event $A$
+\end{itemize}
+
+\subsubsection*{7. Bayes’ Theorem: Communication System Example}
+
+A binary communication system transmits 0 or 1 with errors.
+
+Given:
+\[
+P(0\mid0)=0.95,\quad P(1\mid0)=0.05
+\]
+\[
+P(0\mid1)=0.10,\quad P(1\mid1)=0.90
+\]
+
+\textbf{Tasks solved in lecture:}
+\begin{itemize}
+\item Compute $P(0\text{ received})$, $P(1\text{ received})$
+\item Compute posterior probabilities using Bayes’ rule
+\item Compute overall probability of error:
+\[
+P_e=P(\text{received}\neq\text{transmitted})
+\]
+\end{itemize}
+
+\subsubsection*{8. Independent Events}
+
+\textbf{Definition:}  
+Two events $A$ and $B$ are independent if:
+\[
+P(A\mid B)=P(A) \quad \text{and} \quad P(B\mid A)=P(B)
+\]
+
+\textbf{Equivalently:}
+\[
+P(A\cap B)=P(A)P(B)
+\]
+
+\textbf{Mutual Independence (Three Events):}  
+Events $A,B,C$ are mutually independent if:
+\[
+P(A\cap B)=P(A)P(B)
+\]
+\[
+P(A\cap C)=P(A)P(C)
+\]
+\[
+P(B\cap C)=P(B)P(C)
+\]
+\[
+P(A\cap B\cap C)=P(A)P(B)P(C)
+\]
+
+\subsubsection*{9. Types of Discrete Random Variables}
+
+\subsubsection*{9.1 Bernoulli Random Variable}
+
+\textbf{Experiment:} Single trial with outcome Success or Failure.
+
+\textbf{Definition:}
+\[
+X=
+\begin{cases}
+1, & \text{Success}\\
+0, & \text{Failure}
+\end{cases}
+\]
+
+\textbf{PMF:}
+\[
+P(X=1)=p,\quad P(X=0)=1-p \quad (0<p<1)
+\]
+
+\subsubsection*{9.2 Binomial Random Variable}
+
+\textbf{Experiment:}  
+$n$ independent Bernoulli trials with success probability $p$.
+
+\textbf{Definition:}  
+$X$ = number of successes in $n$ trials.
+
+\textbf{Notation:} $X\sim B(n,p)$
+
+\textbf{PMF:}
+\[
+P(X=i)=\binom{n}{i}p^i(1-p)^{n-i}, \quad i=0,1,\ldots,n
+\]
+
+\subsubsection*{9.3 Geometric Random Variable}
+
+\textbf{Experiment:} Independent trials performed until first success.
+
+\textbf{Definition:}  
+$X$ = number of trials required for first success.
+
+\textbf{PMF:}
+\[
+P(X=n)=(1-p)^{n-1}p, \quad n=1,2,\ldots
+\]
+
+\textbf{Normalization check:}
+\[
+\sum_{n=1}^{\infty}(1-p)^{n-1}p=1
+\]
+
+\subsubsection*{9.4 Poisson Random Variable}
+
+\textbf{Definition:}  
+A random variable $X$ is Poisson with parameter $\lambda>0$ if:
+\[
+P(X=i)=e^{-\lambda}\frac{\lambda^i}{i!}, \quad i=0,1,2,\ldots
+\]
+
+\textbf{Normalization:}
+\[
+\sum_{i=0}^{\infty}P(X=i)=1
+\]
+
+\textbf{Important Note:}  
+Poisson distribution can approximate a Binomial $B(n,p)$ when:
+\begin{itemize}
+\item $n$ is large
+\item $p$ is small
+\item $np$ is of moderate size
+\end{itemize}
+
+\subsection*{Important Notes / Remarks}
+
+\begin{itemize}
+\item PMF validity requires non-negativity and unit total probability.
+\item Independence is stronger than pairwise independence.
+\item Bayes’ Theorem updates beliefs using observed data.
+\item Poisson approximation is a key exam concept.
+\item Discrete RV models must match the experiment’s structure.
+\end{itemize}
+
+\subsection*{Conclusion}
+
+This lecture establishes the theoretical backbone of discrete probability modeling. Starting from the abstract definition of random variables, it systematically develops PMFs, conditional probability, Bayes’ Theorem, and independence. The lecture culminates in a structured taxonomy of discrete random variables, each tied to specific experimental assumptions and mathematical formulations.
+
+These concepts form the foundation for expectation, variance, and probabilistic analysis in computing systems, making them essential for both exams and advanced applications.
+
+\end{document}
+

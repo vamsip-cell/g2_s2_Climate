@@ -1,0 +1,221 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\geometry{margin=1in}
+
+\title{CSE400 -- Fundamentals of Probability in Computing\\
+Lecture 11: Transformation of Random Variables}
+\author{Dhaval Patel, PhD\\
+Associate Professor\\
+SEAS -- Ahmedabad University\\
+February 10, 2026}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Outline}
+
+\begin{enumerate}
+    \item Transformation of Random Variables \\
+    Learning of transformation techniques for random variables.
+    \item Function of Two Random Variables \\
+    Joint transformations and derived distributions.
+    \item Illustrative Example \\
+    Detailed derivation for the case: $Z = X + Y$.
+\end{enumerate}
+
+\section{Transformation of a Random Variable}
+
+Let $Y = g(X)$.
+
+Assumption: The PDF of $X$, $f_X(x)$, is known a priori.
+
+\subsection*{Case 1: $g(x)$ is Monotonically Increasing}
+
+\textbf{Step 1: CDF of $Y$}
+
+\[
+F_Y(y) = \Pr(Y \le y)
+\]
+
+Since $Y = g(X)$,
+
+\[
+F_Y(y) = \Pr(g(X) \le y)
+\]
+
+Because $g(x)$ is monotonically increasing,
+
+\[
+F_Y(y) = \Pr\left(X \le g^{-1}(y)\right)
+\]
+
+\[
+F_Y(y) = F_X\left(g^{-1}(y)\right)
+\]
+
+\textbf{Step 2: Differentiate with respect to $y$}
+
+\[
+f_Y(y) = \frac{d}{dy} F_X\left(g^{-1}(y)\right)
+\]
+
+Using the chain rule,
+
+\[
+f_Y(y) = f_X\left(g^{-1}(y)\right) \cdot \frac{d}{dy} g^{-1}(y)
+\]
+
+Equivalently,
+
+\[
+f_Y(y) = f_X(x)\left|\frac{dx}{dy}\right| \quad \text{evaluated at } x = g^{-1}(y)
+\]
+
+\subsection*{Case 2: $g(x)$ is Monotonically Decreasing}
+
+\textbf{Step 1:}
+
+\[
+F_Y(y) = \Pr(Y \le y)
+\]
+
+\[
+= \Pr(g(X) \le y)
+\]
+
+Because $g(x)$ is decreasing,
+
+\[
+F_Y(y) = \Pr\left(X \ge g^{-1}(y)\right)
+\]
+
+\[
+F_Y(y) = 1 - F_X\left(g^{-1}(y)\right)
+\]
+
+\textbf{Step 2: Differentiate}
+
+\[
+f_Y(y) = - f_X(x) \frac{dx}{dy} \quad \text{evaluated at } x = g^{-1}(y)
+\]
+
+Combining both cases,
+
+\[
+f_Y(y) = f_X(x)\left|\frac{dx}{dy}\right| \quad \text{at } x = g^{-1}(y)
+\]
+
+\subsection*{Step 3}
+
+Change the limits appropriately for $Y$.
+
+\section{Example}
+
+Let $X$ be uniformly distributed on $(-1,1)$.
+
+\[
+X \sim \text{Uniform}(-1,1)
+\]
+
+\[
+f_X(x) =
+\begin{cases}
+\frac{1}{2}, & -1 < x < 1 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+Let
+
+\[
+Y = g(X) = \sin\left(\frac{\pi X}{2}\right)
+\]
+
+\subsection*{Solution}
+
+\[
+y = \sin\left(\frac{\pi x}{2}\right)
+\]
+
+\[
+x = \frac{2}{\pi} \sin^{-1}(y)
+\]
+
+\[
+\frac{dx}{dy} = \frac{2}{\pi} \cdot \frac{1}{\sqrt{1 - y^2}}
+\]
+
+Using the transformation formula,
+
+\[
+f_Y(y) = f_X(x)\left|\frac{dx}{dy}\right|
+\]
+
+\[
+= \frac{1}{2} \cdot \frac{2}{\pi} \cdot \frac{1}{\sqrt{1 - y^2}}
+\]
+
+\[
+f_Y(y) =
+\begin{cases}
+\frac{1}{\pi \sqrt{1 - y^2}}, & -1 < y < 1 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+\section{Function of Two Random Variables}
+
+Let
+
+\[
+Z = X + Y
+\]
+
+Find:
+
+\begin{enumerate}
+    \item PDF of $Z$, $f_Z(z)$.
+    \item $f_Z(z)$ if $X$ and $Y$ are independent.
+    \item If $X \sim \mathcal{N}(0,1)$ and $Y \sim \mathcal{N}(0,1)$, prove that $Z \sim \mathcal{N}(0,2)$.
+    \item If $X$ and $Y$ are independent exponential random variables with parameter $\lambda$, find $f_Z(z)$.
+\end{enumerate}
+
+\section{Illustrative Derivation: $Z = X + Y$}
+
+\[
+F_Z(z) = \Pr(Z \le z)
+\]
+
+\[
+= \Pr(X + Y \le z)
+\]
+
+Using the joint density,
+
+\[
+F_Z(z) = \iint_{x+y \le z} f_{X,Y}(x,y) \, dx\, dy
+\]
+
+Horizontal strip form:
+
+\[
+\int_{y=-\infty}^{\infty}
+\int_{x=-\infty}^{z-y}
+f_{X,Y}(x,y)\, dx\, dy
+\]
+
+Vertical strip form:
+
+\[
+\int_{x=-\infty}^{\infty}
+\int_{y=-\infty}^{z-x}
+f_{X,Y}(x,y)\, dy\, dx
+\]
+
+Differentiating with respect to $z$ yields $f_Z(z)$.
+
+\end{document}
