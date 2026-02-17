@@ -1,0 +1,316 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{margin=1in}
+
+\begin{document}
+
+\begin{center}
+\Large \textbf{Lecture Scribe}
+\end{center}
+
+\section*{Header Information}
+
+\textbf{Course Name:} CSE400 – Fundamentals of Probability in Computing \\
+
+\textbf{Lecture Number \& Title:} Lecture 11 – Transformation of Random Variables \\
+
+\textbf{Instructor:} Dhaval Patel, PhD \\
+Associate Professor \\
+Major Advisor – Computer Science and Engineering (CSE) \\
+Machine Intelligence, Computing and xG Networks (MICxN) Research Lab \\
+SEAS, Ahmedabad University, Ahmedabad, Gujarat, India \\
+
+\textbf{Date:} February 10, 2026 \\
+
+(Source: Slide 1 L11\_S2\_A)
+
+\section*{Introduction and Overview}
+
+This lecture covers:
+
+\begin{itemize}
+    \item \textbf{Transformation of Random Variables}
+    \begin{itemize}
+        \item Learning transformation techniques for random variables.
+        \item Determining the PDF of a new random variable obtained via transformation.
+    \end{itemize}
+    \item \textbf{Function of Two Random Variables}
+    \begin{itemize}
+        \item Joint transformations and derived distributions.
+        \item Determining the distribution of a function of two RVs.
+    \end{itemize}
+    \item \textbf{Illustrative Example}
+    \[
+    Z = X + Y
+    \]
+\end{itemize}
+
+The main objective emphasized in the lecture is:
+
+\textit{How to find the PDF of a new transformed random variable?}
+
+An assumption explicitly noted:
+
+The PDF of $X$, i.e., $f_X(x)$, is known \textit{a priori}. \\
+
+(Slide 2 L11\_S2\_A)
+
+\section*{Main Body Content}
+
+\subsection*{1. Transformation of a Single Random Variable}
+
+Let:
+\[
+Y = g(X)
+\]
+
+We assume:
+
+\begin{itemize}
+    \item $X$ is a continuous random variable.
+    \item $f_X(x)$ is known.
+    \item $g(\cdot)$ is monotonic (cases handled separately for increasing and decreasing).
+\end{itemize}
+
+(Slides 3–4 L11\_S2\_A)
+
+\subsubsection*{Case 1: $g(x)$ is Monotonically Increasing}
+
+\textbf{Step 1: Compute CDF of $Y$}
+
+\[
+F_Y(y) = P(Y \le y)
+\]
+
+Since $Y = g(X)$,
+
+\[
+F_Y(y) = P(g(X) \le y)
+\]
+
+If $g$ is increasing,
+
+\[
+g(X) \le y \iff X \le g^{-1}(y)
+\]
+
+Thus,
+
+\[
+F_Y(y) = P(X \le g^{-1}(y)) = F_X(g^{-1}(y))
+\]
+
+\textbf{Step 2: Differentiate to Obtain PDF}
+
+\[
+f_Y(y) = \frac{d}{dy} F_X(g^{-1}(y))
+\]
+
+Using chain rule:
+
+\[
+f_Y(y) = f_X(g^{-1}(y)) \cdot \frac{d}{dy} g^{-1}(y)
+\]
+
+Since
+
+\[
+\frac{d}{dy} g^{-1}(y) = \frac{dx}{dy}
+\]
+
+We obtain:
+
+\[
+f_Y(y) = f_X(x) \left| \frac{dx}{dy} \right|_{x = g^{-1}(y)}
+\]
+
+(Slides 3–4 L11\_S2\_A)
+
+\subsubsection*{Case 2: $g(x)$ is Monotonically Decreasing}
+
+\textbf{Step 1: CDF}
+
+\[
+F_Y(y) = P(Y \le y)
+\]
+
+Since $g$ is decreasing,
+
+\[
+g(X) \le y \iff X \ge g^{-1}(y)
+\]
+
+Thus,
+
+\[
+F_Y(y) = P(X \ge g^{-1}(y)) = 1 - F_X(g^{-1}(y))
+\]
+
+\textbf{Step 2: Differentiate}
+
+\[
+f_Y(y) = f_X(x) \left| \frac{dx}{dy} \right|_{x = g^{-1}(y)}
+\]
+
+The absolute value accounts for the negative derivative in decreasing transformations.
+
+\subsubsection*{Final Result (Single Variable Transformation)}
+
+\[
+f_Y(y) = f_X(x) \left| \frac{dx}{dy} \right|_{x = g^{-1}(y)}
+\]
+
+(Slide 4 L11\_S2\_A)
+
+\subsection*{2. Worked Example (From Slides)}
+
+(Slide 5 L11\_S2\_A)
+
+Given:
+
+\[
+X \sim \text{Uniform}(-1,1)
+\]
+
+\[
+f_X(x) =
+\begin{cases}
+\frac{1}{2}, & -1 < x < 1 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+Transformation:
+
+\[
+Y = g(X) = \sin\left(\frac{\pi X}{2}\right)
+\]
+
+\textbf{Step 1: Find Inverse}
+
+\[
+y = \sin\left(\frac{\pi x}{2}\right)
+\]
+
+\[
+x = \frac{2}{\pi} \sin^{-1}(y)
+\]
+
+\textbf{Step 2: Compute Derivative}
+
+\[
+\frac{dx}{dy} = \frac{2}{\pi} \cdot \frac{1}{\sqrt{1-y^2}}
+\]
+
+\textbf{Step 3: Apply Transformation Formula}
+
+\[
+f_Y(y) = f_X(x) \left| \frac{dx}{dy} \right|
+\]
+
+Since $f_X(x) = \frac{1}{2}$,
+
+\[
+f_Y(y) = \frac{1}{2} \cdot \frac{2}{\pi} \cdot \frac{1}{\sqrt{1-y^2}}
+\]
+
+\[
+f_Y(y) = \frac{1}{\pi \sqrt{1-y^2}}, \quad -1 < y < 1
+\]
+
+Otherwise,
+
+\[
+f_Y(y) = 0
+\]
+
+\subsection*{3. Function of Two Random Variables}
+
+(Slides 6–7 L11\_S2\_A)
+
+Let:
+
+\[
+Z = X + Y
+\]
+
+We are required to:
+
+\begin{itemize}
+    \item Find $f_Z(z)$.
+    \item Find $f_Z(z)$ if $X$ and $Y$ are independent.
+    \item If $X \sim N(0,1)$ and $Y \sim N(0,1)$, prove $Z \sim N(0,2)$.
+    \item If $X$ and $Y$ are exponential with parameter $\lambda$, find $f_Z(z)$.
+\end{itemize}
+
+\subsubsection*{Derivation Using CDF Method}
+
+\[
+F_Z(z) = P(Z \le z) = P(X + Y \le z)
+\]
+
+This corresponds to integrating the joint density over the region:
+
+\[
+x + y \le z
+\]
+
+Thus,
+
+\[
+F_Z(z) = \iint_{x+y \le z} f_{X,Y}(x,y)\, dx\, dy
+\]
+
+Integration may be performed using:
+
+\begin{itemize}
+    \item Horizontal strip method
+    \item Vertical strip method
+\end{itemize}
+
+After computing $F_Z(z)$, differentiate:
+
+\[
+f_Z(z) = \frac{d}{dz} F_Z(z)
+\]
+
+\section*{Important Notes / Remarks}
+
+\begin{itemize}
+    \item The PDF of the original variable must be known.
+    \item Monotonicity of transformation is essential.
+    \item Absolute value of derivative is required.
+    \item For sum of two random variables:
+    \[
+    F_Z(z) = P(X + Y \le z)
+    \]
+    \item Convert probability region into double integral.
+    \item Carefully determine limits from geometry.
+    \item Region of integration must match $x + y \le z$.
+    \item Differentiation of CDF gives the final PDF.
+\end{itemize}
+
+(All based strictly on Slides 2–7 L11\_S2\_A)
+
+\section*{Conclusion}
+
+In this lecture, we studied:
+
+\begin{itemize}
+    \item Transformation of a single random variable using the CDF method.
+    \item Derivation of the general transformation formula:
+    \[
+    f_Y(y) = f_X(x) \left| \frac{dx}{dy} \right|
+    \]
+    \item Application to a trigonometric transformation example.
+    \item Extension to functions of two random variables.
+    \item Derivation approach for $Z = X + Y$ using geometric interpretation and double integration.
+\end{itemize}
+
+The lecture establishes systematic techniques to derive PDFs of transformed random variables and lays the foundation for handling joint transformations and sums of random variables.
+
+(Complete content derived strictly from Lecture 11 slides L11\_S2\_A.)
+
+\end{document}
