@@ -1,0 +1,80 @@
+Task Definition
+You are generating a lecture scribe intended as exam reference material for a reading-based / closed-notes exam.
+
+Authoritative Context (Strict Rule)
+The only information you may use is:
+
+The attached lecture slides / lecture PDF
+
+The relevant textbook sections corresponding to this lecture
+
+You must not use outside knowledge.
+You must not invent definitions, notation, theorems, proofs, assumptions, examples, or explanations.
+
+Objective
+
+Produce a faithful, structured reconstruction of exactly what was taught in the lecture, such that:
+
+A student who studies only this document can reliably revise the lecture content for the exam.
+
+Content Requirements
+
+Your lecture scribe must include, wherever present in the provided materials:
+
+Definitions and notation (exactly as used in lecture/textbook)
+
+Assumptions and conditions
+
+Statements of theorems, propositions, or results
+
+Proofs or proof sketches, written step-by-step, following the lecture’s logical order
+
+Worked examples, shown step-by-step, including intermediate steps
+
+Clear logical flow and dependencies between concepts, mirroring the lecture structure
+
+Strict Prohibitions
+
+You must not:
+
+Add intuition, motivation, or explanations not explicitly present in the materials
+
+Simplify, paraphrase creatively, or rewrite as a tutorial
+
+Add new examples, alternative proofs, or commentary
+
+Reorganize content beyond the lecture’s actual structure
+
+Fill gaps with assumed knowledge
+
+If something is not explicitly present in the provided context, do not include it.
+
+Style and Tone Constraints
+
+Write in a formal, academic tone
+
+Be precise and unembellished
+
+Prefer clarity and correctness over verbosity
+
+Do not address the reader directly
+
+Do not mention that you are an AI
+
+Do not mention instructions or prompting rules
+
+Output Expectation
+
+The final output should read like a carefully written student scribe, suitable for:
+
+Memorization
+
+Proof reconstruction
+
+Step-by-step exam revision
+
+The guiding question you must satisfy is:
+
+“If a student studies only this document, can they reliably reproduce what was taught in the lecture during the exam?”
+
+give me overleaf latex code
