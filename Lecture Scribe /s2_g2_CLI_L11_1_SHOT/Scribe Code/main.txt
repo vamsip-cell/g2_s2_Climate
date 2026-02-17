@@ -1,0 +1,532 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{setspace}
+
+\geometry{margin=1in}
+\setstretch{1.2}
+
+\title{Lecture Scribe - 11}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{Course:} CSE400 – Fundamentals of Probability in Computing\\
+\textbf{Lecture number:} 11\\
+\textbf{Topic:} Transformation of Random Variables\\
+\textbf{Date:} February 10, 2026
+
+\section*{Definitions (Key Definitions)}
+
+\textbf{Definition 1: Transformation of a Random Variable}
+
+Let $X$ be a continuous random variable with known PDF $f_X(x)$. If a new random variable is defined as
+
+\[
+Y = g(X)
+\]
+
+then $Y$ is called a transformed random variable.
+
+\textbf{Objective:}
+
+Find the PDF of the new random variable:
+
+\[
+f_Y(y)
+\]
+
+\textbf{Assumption (from lecture):}
+
+The PDF of $X$, $f_X(x)$, is known a priori.
+
+L11\_S2\_A
+
+\textbf{Definition 2: Cumulative Distribution Function (CDF)}
+
+\[
+F_Y(y) = P(Y \le y)
+\]
+
+CDF is used as an intermediate step to derive the PDF of transformed variables.
+
+\textbf{Definition 3: Monotonic Function}
+
+A function $g(x)$ is monotonic if:
+
+Strictly increasing, OR
+
+Strictly decreasing
+
+This ensures inverse function exists:
+
+\[
+x = g^{-1}(y)
+\]
+
+\textbf{Definition 4: Transformation of Two Random Variables}
+
+If
+
+\[
+Z = g(X,Y)
+\]
+
+then we use joint PDF:
+
+\[
+f_{XY}(x,y)
+\]
+
+to derive
+
+\[
+f_Z(z)
+\]
+
+\section*{Theorems / Propositions (Statements)}
+
+\textbf{Theorem 1: PDF of Transformed Random Variable (Monotonic Increasing Case)}
+
+If:
+
+\[
+Y = g(X)
+\]
+
+and $g(x)$ is strictly increasing, then
+
+\[
+F_Y(y) = F_X(g^{-1}(y))
+\]
+
+and PDF is
+
+\[
+f_Y(y) = f_X(g^{-1}(y)) \left| \frac{dx}{dy} \right|
+\]
+
+\textbf{Theorem 2: PDF of Transformed RV (Monotonic Decreasing Case)}
+
+If $g(x)$ is strictly decreasing:
+
+\[
+F_Y(y) = 1 - F_X(g^{-1}(y))
+\]
+
+and PDF is
+
+\[
+f_Y(y) = f_X(g^{-1}(y)) \left| \frac{dx}{dy} \right|
+\]
+
+(Same final formula applies using absolute value.)
+
+\textbf{Theorem 3: Sum of Two Random Variables}
+
+If:
+
+\[
+Z = X + Y
+\]
+
+then
+
+\[
+F_Z(z) = P(X + Y \le z)
+\]
+
+and PDF is obtained using joint PDF integration.
+
+\section*{Proofs (Main Proof Ideas / Steps)}
+
+\textbf{Proof of Transformation Formula (Increasing Case)}
+
+Given:
+
+\[
+Y = g(X)
+\]
+
+Step 1: Write CDF
+
+\[
+F_Y(y) = P(Y \le y)
+\]
+
+Substitute transformation:
+
+\[
+= P(g(X) \le y)
+\]
+
+Since monotonic increasing:
+
+\[
+= P(X \le g^{-1}(y))
+\]
+
+Thus:
+
+\[
+F_Y(y) = F_X(g^{-1}(y))
+\]
+
+Step 2: Differentiate to obtain PDF
+
+\[
+f_Y(y) = \frac{d}{dy} F_X(g^{-1}(y))
+\]
+
+Using chain rule:
+
+\[
+= f_X(g^{-1}(y)) \frac{d}{dy} (g^{-1}(y))
+\]
+
+Thus:
+
+\[
+f_Y(y) = f_X(x) \left| \frac{dx}{dy} \right|
+\]
+
+evaluated at
+
+\[
+x = g^{-1}(y)
+\]
+
+\textbf{Proof for Decreasing Case}
+
+Start:
+
+\[
+F_Y(y) = P(Y \le y)
+\]
+
+Since decreasing function:
+
+\[
+= P(X \ge g^{-1}(y))
+\]
+
+Thus:
+
+\[
+= 1 - F_X(g^{-1}(y))
+\]
+
+Differentiate:
+
+\[
+f_Y(y) = f_X(g^{-1}(y)) \left| \frac{dx}{dy} \right|
+\]
+
+\section*{Derivations / Equations (Important Derivations)}
+
+\textbf{General Formula for Transformation}
+
+\[
+f_Y(y) = f_X(x) \left| \frac{dx}{dy} \right|
+\]
+
+where
+
+\[
+x = g^{-1}(y)
+\]
+
+\textbf{Derivation for Sum of Two Random Variables}
+
+Given:
+
+\[
+Z = X + Y
+\]
+
+CDF:
+
+\[
+F_Z(z) = P(Z \le z)
+\]
+
+Substitute:
+
+\[
+= P(X + Y \le z)
+\]
+
+Using joint PDF:
+
+\[
+= \int \int_{x+y \le z} f_{XY}(x,y)\,dx\,dy
+\]
+
+This defines PDF of sum.
+
+\section*{Examples}
+
+\textbf{Example 1: Transformation Using Sine Function}
+
+(from page 5 illustration)
+
+L11\_S2\_A
+
+Given:
+
+\[
+X \sim Uniform(-1,1)
+\]
+
+PDF:
+
+\[
+f_X(x) =
+\begin{cases}
+\frac{1}{2}, & -1 < x < 1 \\
+0, & otherwise
+\end{cases}
+\]
+
+Transformation:
+
+\[
+Y = \sin\left(\frac{\pi X}{2}\right)
+\]
+
+Find:
+
+\[
+f_Y(y)
+\]
+
+Solution:
+
+Step 1: Find inverse transformation
+
+\[
+\sin^{-1}(y) = \frac{\pi X}{2}
+\]
+
+Solve:
+
+\[
+X = \frac{2}{\pi} \sin^{-1}(y)
+\]
+
+Step 2: Differentiate
+
+\[
+\frac{dx}{dy} =
+\frac{2}{\pi}
+\frac{1}{\sqrt{1-y^2}}
+\]
+
+Step 3: Apply transformation formula
+
+\[
+f_Y(y)
+=
+\frac{1}{2}
+\cdot
+\frac{2}{\pi}
+\frac{1}{\sqrt{1-y^2}}
+\]
+
+Final answer:
+
+\[
+f_Y(y)
+=
+\frac{1}{\pi \sqrt{1-y^2}},
+\quad -1 < y < 1
+\]
+
+\textbf{Example 2: Sum of Two Random Variables}
+
+Given:
+
+\[
+Z = X + Y
+\]
+
+Find:
+
+PDF of $Z$
+
+If $X,Y$ independent
+
+If $X,Y$ normal
+
+If $X,Y$ exponential
+
+Solution:
+
+\[
+F_Z(z) = P(Z \le z)
+\]
+
+\[
+= P(X + Y \le z)
+\]
+
+Using joint PDF:
+
+\[
+= \int \int_{x+y \le z} f_{XY}(x,y)\,dx\,dy
+\]
+
+Graphically illustrated in lecture (page 7 region diagram)
+
+L11\_S2\_A
+
+\section*{Special Case: Normal Distribution}
+
+Given:
+
+\[
+X \sim N(0,1)
+\]
+
+\[
+Y \sim N(0,1)
+\]
+
+Independent
+
+Then:
+
+\[
+Z = X + Y
+\]
+
+Result:
+
+\[
+Z \sim N(0,2)
+\]
+
+Mean:
+
+\[
+\mu_Z = 0 + 0 = 0
+\]
+
+Variance:
+
+\[
+\sigma_Z^2 = 1 + 1 = 2
+\]
+
+\section*{Remarks}
+
+CDF method is fundamental for transformation.
+
+Absolute derivative is required.
+
+Inverse function must exist.
+
+Region of integration must be carefully defined.
+
+Transformation preserves probability.
+
+\section*{Assumptions}
+
+Original PDF known.
+
+Function monotonic.
+
+Differentiable inverse exists.
+
+Joint PDF known for two variables.
+
+Independence simplifies calculation.
+
+\section*{Special Cases}
+
+Case 1: Increasing function
+
+\[
+F_Y(y) = F_X(g^{-1}(y))
+\]
+
+Case 2: Decreasing function
+
+\[
+F_Y(y) = 1 - F_X(g^{-1}(y))
+\]
+
+Case 3: Two variables sum
+
+\[
+F_Z(z) =
+\int \int_{x+y \le z}
+f_{XY}(x,y)\,dx\,dy
+\]
+
+\section*{Summary}
+
+This lecture covered transformation techniques to find PDF of new random variables derived from existing ones.
+
+Steps:
+
+Start from CDF definition
+
+Substitute transformation
+
+Use inverse function
+
+Differentiate
+
+Apply derivative magnitude
+
+Also covered transformation involving two random variables and sum distribution.
+
+\section*{Key Results (Exam-Critical)}
+
+Result 1: Transformation Formula
+
+\[
+f_Y(y) =
+f_X(g^{-1}(y))
+\left| \frac{dx}{dy} \right|
+\]
+
+Result 2: CDF relationship
+
+Increasing case:
+
+\[
+F_Y(y) =
+F_X(g^{-1}(y))
+\]
+
+Decreasing case:
+
+\[
+F_Y(y) =
+1 -
+F_X(g^{-1}(y))
+\]
+
+Result 3: Sum of RVs
+
+\[
+F_Z(z) =
+P(X + Y \le z)
+\]
+
+Result 4: Sum of Normal RVs
+
+\[
+N(0,1) + N(0,1) =
+N(0,2)
+\]
+
+\end{document}
+
