@@ -1,0 +1,360 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{setspace}
+\usepackage{enumitem}
+
+\setstretch{1.2}
+
+\title{\textbf{Lecture 15-17 Scribe}\\
+Joint Random Variables and Joint Distributions}
+
+\author{
+\textbf{Dhruvi Faldu} \\[0.2cm]
+\textit{Course: CSE400 – Fundamentals of Probability in Computing} \\[0.1cm]
+\textit{Instructor: Prof. Dhaval Patel}
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Overview}
+
+Topics covered in the lecture:
+
+\begin{itemize}
+\item Why study joint random variables
+\item Discrete case
+\begin{itemize}
+\item Joint PMF
+\item Joint PMF table representation
+\item Example: Rolling two dice
+\end{itemize}
+\item Continuous case
+\begin{itemize}
+\item Joint PDF
+\item Geometric interpretation
+\item Worked example
+\end{itemize}
+\item Joint cumulative distribution function (Joint CDF)
+\begin{itemize}
+\item Definition of joint CDF
+\item Continuous case
+\item Discrete case
+\item Properties of joint CDF
+\end{itemize}
+\item Comprehensive example
+\end{itemize}
+
+\section{Definitions and Notation}
+
+\subsection*{Joint Random Variables}
+
+In science and real life, we are often interested in two or more random variables
+at the same time.
+
+Examples mentioned:
+
+\begin{itemize}
+\item Height and weight of giraffes
+\item IQ and birthweight of children
+\item Frequency of exercise and rate of heart disease
+\item Air pollution level and respiratory illness rate
+\item Number of Facebook friends and age of members
+\end{itemize}
+
+In such situations the random variables have a joint distribution that allows
+computation of probabilities involving both variables and helps understand
+relationships between variables.
+
+If variables are not independent, covariance and correlation are used as
+measures of dependence.
+
+\subsection*{Discrete Case – Joint PMF}
+
+Suppose $X$ and $Y$ are discrete random variables.
+
+\[
+X \in \{x_1,x_2,\dots,x_n\}
+\]
+
+\[
+Y \in \{y_1,y_2,\dots,y_m\}
+\]
+
+The ordered pair $(X,Y)$ takes values in
+
+\[
+\{(x_1,y_1),(x_1,y_2),\dots,(x_n,y_m)\}
+\]
+
+\textbf{Definition (Joint PMF)}
+
+\[
+p(x_i,y_j)=P(X=x_i,Y=y_j)
+\]
+
+This gives the probability of the joint outcome occurring simultaneously.
+
+\subsection*{Joint PMF Table Representation}
+
+The joint PMF can be organized in a table with rows representing values of $X$
+and columns representing values of $Y$.
+
+\textbf{Key Properties}
+
+\[
+0 \le p(x,y) \le 1
+\]
+
+\[
+\sum_{i=1}^{n}\sum_{j=1}^{m} p(x_i,y_j)=1
+\]
+
+\section{Continuous Case – Joint PDF}
+
+The continuous case is analogous to the discrete case:
+
+\begin{itemize}
+\item Discrete values $\rightarrow$ Continuous intervals
+\item Joint PMF $\rightarrow$ Joint PDF
+\item Sums $\rightarrow$ Double integrals
+\end{itemize}
+
+If
+
+\[
+X \in [a,b], \quad Y \in [c,d]
+\]
+
+then the pair $(X,Y)$ takes values in
+
+\[
+[a,b] \times [c,d]
+\]
+
+\textbf{Definition (Joint PDF)}
+
+A function $f(x,y)$ is called the joint probability density function of $X$ and
+$Y$ if
+
+\[
+P((X,Y) \text{ lies in a small rectangle of area } dx\,dy)=f(x,y)\,dx\,dy
+\]
+
+\textbf{Key Properties}
+
+\[
+f(x,y) \ge 0
+\]
+
+\[
+\int\int f(x,y)\,dx\,dy =1
+\]
+
+Note: The joint PDF $f(x,y)$ may take values greater than 1 since it is a
+probability density and not a probability.
+
+\section{Joint Cumulative Distribution Function (Joint CDF)}
+
+Suppose $X$ and $Y$ are jointly distributed random variables.
+
+\[
+F(x,y)=P(X<x,Y<y)
+\]
+
+\section{Main Results}
+
+\subsection*{Continuous Case}
+
+If $X$ and $Y$ are continuous random variables with joint density $f(x,y)$ over
+$[a,b]\times[c,d]$, then
+
+\[
+F(x,y)=\int_{c}^{y}\int_{a}^{x} f(u,v)\,du\,dv
+\]
+
+\subsection*{Recovering the Joint PDF}
+
+\[
+f(x,y)=\frac{\partial^2 F(x,y)}{\partial x \partial y}
+\]
+
+\subsection*{Discrete Case}
+
+If $X$ and $Y$ are discrete random variables with joint PMF $p(x_i,y_j)$,
+
+\[
+F(x,y)=\sum_{x_i<x}\sum_{y_j<y} p(x_i,y_j)
+\]
+
+Interpretation:
+
+\begin{itemize}
+\item Add all probabilities in the table
+\item For rows with $x_i<x$
+\item For columns with $y_j<y$
+\end{itemize}
+
+\section{Proofs or Derivations}
+
+\subsection*{Validity of Joint PDF (Normalization)}
+
+Given
+
+\[
+f(x,y)=4xy, \quad 0<x<1, 0<y<1
+\]
+
+Check normalization:
+
+\[
+\int_0^1 \int_0^1 4xy\,dx\,dy
+\]
+
+\[
+= \int_0^1 \left(\int_0^1 4xy\,dx \right) dy
+\]
+
+\[
+= \int_0^1 2y\,dy
+\]
+
+\[
+= [y^2]_0^1=1
+\]
+
+Thus $f(x,y)\ge0$ and total probability equals 1.
+
+Therefore $f(x,y)$ is a valid joint PDF.
+
+\section{Examples}
+
+\subsection*{Example 1: Rolling Two Dice}
+
+Experiment: Roll two fair dice.
+
+Let
+
+\[
+X = \text{value on the first die}
+\]
+
+\[
+T = \text{total (sum) of both dice}
+\]
+
+Each outcome $(i,j)$ has probability
+
+\[
+\frac{1}{36}
+\]
+
+Construct the joint probability table of $(X,T)$.
+
+Observation:
+
+Entries are either $0$ or $\frac{1}{36}$.
+
+$X$ and $T$ are not independent.
+
+\subsection*{Example 2: Continuous Joint PDF}
+
+Given
+
+\[
+f(x,y)=4xy, \quad 0<x<1,0<y<1
+\]
+
+Tasks:
+
+\begin{enumerate}
+\item Show that $f(x,y)$ is a valid joint PDF
+\item Visualize the event
+\[
+A=\{X<0.5, Y>0.5\}
+\]
+\item Compute
+\[
+P(A)
+\]
+\end{enumerate}
+
+Joint support:
+
+\[
+(X,Y)\in [0,1]^2
+\]
+
+Probability calculation:
+
+\[
+P(A)=\int_{0}^{0.5}\int_{0.5}^{1}4xy\,dy\,dx
+\]
+
+\[
+= \int_{0}^{0.5}[2xy^2]_{0.5}^{1}dx
+\]
+
+\[
+= \int_{0}^{0.5}2x(1-0.25)\,dx
+\]
+
+\[
+= \int_{0}^{0.5}\frac{3}{2}x\,dx
+\]
+
+\[
+= \frac{3}{16}
+\]
+
+\section{Properties of the Joint CDF}
+
+The joint CDF $F(x,y)$ must satisfy:
+
+\begin{enumerate}
+\item Non-decreasing property
+
+If $x$ or $y$ increases, then $F(x,y)$ must stay constant or increase.
+
+\item Lower-left property
+
+\[
+F(x,y)=0
+\]
+
+at the lower-left of the joint range.
+
+\item Upper-right property
+
+\[
+\lim_{(x,y)\to(\infty,\infty)}F(x,y)=1
+\]
+
+\end{enumerate}
+
+\section{Summary}
+
+This lecture introduced the concept of joint random variables and their
+distributions.
+
+Key topics included:
+
+\begin{itemize}
+\item Motivation for studying joint random variables
+\item Joint PMF for discrete random variables
+\item Joint PDF for continuous random variables
+\item Joint PMF table representation
+\item Worked examples including rolling two dice and a continuous joint PDF example
+\item Definition and computation of the joint CDF
+\item Properties of the joint CDF
+\end{itemize}
+
+These concepts allow computation of probabilities involving two random
+variables simultaneously and help analyze relationships between them.
+
+\end{document}
