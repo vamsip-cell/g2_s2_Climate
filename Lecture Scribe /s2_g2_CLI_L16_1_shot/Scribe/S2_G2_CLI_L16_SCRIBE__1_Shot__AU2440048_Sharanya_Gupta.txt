@@ -1,0 +1,325 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+
+Here is the lecture scribe strictly based on the provided slides, following your required structure and without adding any new content.
+
+\section*{Lecture Scribe: Joint Random Variables and Joint Distributions}
+
+\textbf{Course:} CSE400 - Fundamentals of Probability in Computing\\
+\textbf{Lecture:} L15–L18\\
+\textbf{Instructor:} Dhaval Patel, PhD\\
+\textbf{Date:} March 10, 2026
+
+\section*{1. Introduction and Overview}
+
+This lecture introduces the concept of joint random variables and their distributions. The topics covered include:
+
+Motivation for studying joint random variables
+
+Discrete case:
+
+Joint PMF definition
+
+Table representation
+
+Example: Rolling two dice
+
+Continuous case:
+
+Joint PDF
+
+Geometric interpretation
+
+Worked example
+
+Joint cumulative distribution function (CDF):
+
+Definition
+
+Continuous case
+
+Discrete case
+
+Properties
+
+Comprehensive example and solution
+
+\section*{2. Main Body Content}
+
+\subsection*{2.1 Why Study Joint Random Variables}
+
+In science and real life, we are often interested in two (or more) random variables at the same time.
+
+Examples include:
+
+Height and weight of giraffes
+
+IQ and birthweight of children
+
+Frequency of exercise and heart disease rate
+
+Air pollution level and respiratory illness rate
+
+Number of Facebook friends and age of members
+
+Additional application-based examples:
+
+Smart transportation:
+
+$X = $ Vehicle Speed
+
+$Y = $ Traffic Density
+
+Wireless networks:
+
+$X = $ Signal-to-Noise Ratio
+
+$Y = $ Data Throughput
+
+These variables may be correlated random variables.
+
+A joint distribution allows us to:
+
+Compute probabilities involving both variables
+
+Understand relationships between variables
+
+If variables are not independent, covariance and correlation are used to measure dependence.
+
+\subsection*{2.2 Discrete Case – Joint PMF}
+
+\textbf{Setup}
+
+Suppose $X$ and $Y$ are discrete random variables:
+
+\[
+X \in \{x_1, x_2, \dots, x_n\}, \quad Y \in \{y_1, y_2, \dots, y_m\}
+\]
+
+The ordered pair $(X,Y)$ takes values in:
+
+\[
+\{(x_1,y_1),(x_1,y_2),\dots,(x_n,y_m)\}
+\]
+
+\textbf{Definition (Joint PMF)}
+
+\[
+p(x_i,y_j) = P(X = x_i, Y = y_j)
+\]
+
+This gives the probability of the joint outcome occurring simultaneously.
+
+\subsection*{2.3 Joint PMF Table Representation}
+
+The joint PMF can be organized in a table.
+
+\textbf{Key Properties}
+
+\[
+0 \le p(x_i,y_j) \le 1
+\]
+
+\[
+\sum_{i=1}^{n} \sum_{j=1}^{m} p(x_i,y_j) = 1
+\]
+
+\subsection*{2.4 Example: Rolling Two Dice}
+
+\textbf{Experiment}
+
+Roll two fair dice.
+
+Let:
+
+$X = $ value on the first die
+
+$T = $ total (sum) of both dice
+
+Each outcome $(i,j)$ has probability:
+
+\[
+\frac{1}{36}
+\]
+
+A joint probability table of $(X,T)$ is constructed (shown on page 14).
+
+\textbf{Observations}
+
+Entries are either $0$ or $\frac{1}{36}$
+
+$X$ and $T$ are not independent
+
+\subsection*{2.5 Continuous Case – Joint PDF}
+
+\textbf{Analogy with Discrete Case}
+
+Discrete values $\rightarrow$ Continuous intervals
+
+Joint PMF $\rightarrow$ Joint PDF
+
+Sums $\rightarrow$ Double integrals
+
+If:
+
+\[
+X \in [a,b], \quad Y \in [c,d]
+\]
+
+then $(X,Y)$ lies in:
+
+\[
+[a,b] \times [c,d]
+\]
+
+\textbf{Definition (Joint PDF)}
+
+A function $f(x,y)$ is called the joint probability density function if:
+
+\[
+P((X,Y) \text{ in small rectangle}) \approx f(x,y)\,dx\,dy
+\]
+
+\textbf{Key Properties}
+
+\[
+f(x,y) \ge 0
+\]
+
+\[
+\int_{c}^{d} \int_{a}^{b} f(x,y)\,dx\,dy = 1
+\]
+
+\textbf{Note:}
+
+The joint PDF may take values greater than 1 since it is a density, not a probability.
+
+\subsection*{2.6 Continuous Example}
+
+Given:
+
+\[
+f(x,y) = 4xy, \quad 0 \le x \le 1, \quad 0 \le y \le 1
+\]
+
+Tasks:
+
+Show $f(x,y)$ is a valid joint PDF
+
+Visualize event:
+
+\[
+A = \{X < 0.5, Y > 0.5\}
+\]
+
+Compute $P(A)$
+
+\subsection*{2.7 Example Solution}
+
+\textbf{Step 1: Check Validity (Normalization)}
+
+\[
+\int_{0}^{1} \int_{0}^{1} 4xy\,dx\,dy
+= \int_{0}^{1} \left[\int_{0}^{1} 4xy\,dx \right] dy
+= \int_{0}^{1} 2y\,dy
+= [y^2]_{0}^{1}
+= 1
+\]
+
+Hence:
+
+$f(x,y) \ge 0$
+
+Total probability = 1
+
+So it is a valid joint PDF.
+
+\textbf{Step 2: Compute $P(A)$}
+
+\[
+P(A) = \int_{0}^{0.5} \int_{0.5}^{1} 4xy\,dy\,dx
+= \int_{0}^{0.5} [2xy^2]_{0.5}^{1} dx
+= \int_{0}^{0.5} 2x(1 - 0.25)\,dx
+= \int_{0}^{0.5} \frac{3}{2}x\,dx
+= \frac{3}{16}
+\]
+
+\subsection*{2.8 Joint Cumulative Distribution Function (CDF)}
+
+\textbf{Notation}
+
+\[
+X \le x, Y \le y \Rightarrow \{X \le x \text{ and } Y \le y\}
+\]
+
+\textbf{Definition (Joint CDF)}
+
+\[
+F(x,y) = P(X \le x, Y \le y)
+\]
+
+\subsection*{2.9 Joint CDF – Continuous Case}
+
+\[
+F(x,y) = \int_{c}^{y} \int_{a}^{x} f(u,v)\,du\,dv
+\]
+
+\textbf{Recovering PDF:}
+
+\[
+f(x,y) = \frac{\partial^2}{\partial x \partial y} F(x,y)
+\]
+
+\subsection*{2.10 Joint CDF – Discrete Case}
+
+\[
+F(x,y) = \sum_{x_i \le x} \sum_{y_j \le y} p(x_i,y_j)
+\]
+
+\textbf{Interpretation}
+
+Add all probabilities in the table
+
+Include rows with $x_i \le x$
+
+Include columns with $y_j \le y$
+
+\subsection*{2.11 Properties of Joint CDF}
+
+The joint CDF $F(x,y)$ satisfies:
+
+\textbf{Non-decreasing}
+
+If $x$ or $y$ increases, $F(x,y)$ stays constant or increases
+
+\textbf{Lower-left limit}
+
+\[
+F(x,y) = 0 \text{ at } (-\infty, -\infty)
+\]
+
+\textbf{Upper-right limit}
+
+\[
+F(x,y) = 1 \text{ at } (\infty, \infty)
+\]
+
+\section*{3. Important Notes / Remarks}
+
+Joint distributions help model relationships between variables
+
+Independence simplifies analysis; otherwise dependence measures are used
+
+Joint PDF values can exceed 1 (since it is a density)
+
+Discrete case uses summation, continuous case uses integration
+
+Joint CDF accumulates probability over a region
+
+\section*{4. Conclusion}
+
+This lecture introduced joint random variables and their distributions in both discrete and continuous settings. It covered definitions of joint PMF, joint PDF, and joint CDF, along with their properties and representations. Through examples such as rolling two dice and a continuous density function, the lecture demonstrated how to compute probabilities and analyze relationships between variables using joint distributions.
+
+\end{document}
