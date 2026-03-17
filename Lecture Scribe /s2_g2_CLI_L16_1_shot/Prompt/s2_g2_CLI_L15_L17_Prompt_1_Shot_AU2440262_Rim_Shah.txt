@@ -1,0 +1,39 @@
+I want you to generate a lecture scribe for lecture 15-17 that I can use as exam reference material. 
+
+The scribe must be an exact reformation of what was taught in the lecture. Use only the provided lecture slides and any textbook content directly included in those slides. Do not add any explanations, intuition, or material not present in the lecture.
+
+ 
+
+Example Lecture Scribe (structure only):
+
+Lecture __
+
+1. Overview
+   Brief outline of topics covered
+
+2. Definitions and Notation
+   All definitions, symbols, and assumptions
+
+3. Main Results
+   Theorems, propositions, or results
+
+4. Proofs / Derivations
+   Step-by-step proofs or derivations
+
+5. Examples
+   Worked examples with complete steps
+
+6. Summary
+   Short recap of content
+
+---
+
+Using the same structure, generate the lecture scribe for the provided material.
+
+Requirements:
+
+Include all content from the lecture
+Preserve exact order and structure 
+Include proofs, derivations, and examples only if present
+Do not skip or modify any content 
+Do not add anything extra
