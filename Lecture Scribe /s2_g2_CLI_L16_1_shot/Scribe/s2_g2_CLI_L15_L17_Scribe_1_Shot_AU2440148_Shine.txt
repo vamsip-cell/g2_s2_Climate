@@ -1,0 +1,173 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+
+\section*{Lecture Scribe}
+
+\textbf{Course:} CSE400 – Fundamentals of Probability in Computing\\
+\textbf{Lecture number:} L15--L18\\
+\textbf{Topic:} Joint Random Variables \& Joint Distributions\\
+\textbf{Name:} Shine Shah (AU2440148)
+
+\section*{Definitions}
+
+\subsection*{1. Joint Random Variables}
+Two (or more) random variables considered simultaneously to study their relationship.
+
+\subsection*{2. Joint PMF (Discrete Case)}
+If $X$ and $Y$ are discrete random variables:
+\[
+p(x_i, y_j) = P(X = x_i, Y = y_j)
+\]
+Defined over:
+\[
+\{(x_1,y_1),(x_1,y_2),\dots,(x_n,y_m)\}
+\]
+
+\subsection*{3. Joint PDF (Continuous Case)}
+\[
+P((X,Y)\ \text{in small area}) \approx f(x,y)\,dx\,dy
+\]
+
+\subsection*{4. Joint CDF}
+\[
+F(x,y) = P(X \le x, Y \le y)
+\]
+
+\section*{Theorems / Propositions}
+
+\subsection*{1. Properties of Joint PMF}
+\[
+0 \le p(x_i,y_j) \le 1
+\]
+\[
+\sum_i \sum_j p(x_i,y_j) = 1
+\]
+
+\subsection*{2. Properties of Joint PDF}
+\[
+f(x,y) \ge 0
+\]
+\[
+\int_c^d \int_a^b f(x,y)\,dx\,dy = 1
+\]
+
+\subsection*{3. Joint CDF Properties}
+\[
+\lim_{(x,y)\to(-\infty,-\infty)} F(x,y) = 0
+\]
+\[
+\lim_{(x,y)\to(\infty,\infty)} F(x,y) = 1
+\]
+
+\section*{Proofs}
+
+\subsection*{1. Validity of Joint PDF}
+Given:
+\[
+f(x,y)=4xy,\quad 0\le x\le1,\ 0\le y\le1
+\]
+
+\[
+\int_0^1 \int_0^1 4xy\,dx\,dy
+\]
+\[
+= \int_0^1 \left[\int_0^1 4xy\,dx \right] dy
+\]
+\[
+= \int_0^1 4y \left[\frac{x^2}{2}\right]_0^1 dy
+\]
+\[
+= \int_0^1 2y\,dy
+\]
+\[
+= \left[y^2\right]_0^1 = 1
+\]
+
+\[
+f(x,y)\ge 0
+\]
+
+\section*{Derivations / Equations}
+
+\subsection*{1. Continuous Case Relation}
+\[
+(X,Y)\in [a,b]\times[c,d]
+\]
+
+\subsection*{2. Joint CDF (Continuous Case)}
+\[
+F(x,y)=\int_c^y \int_a^x f(u,v)\,du\,dv
+\]
+
+\subsection*{3. Recovering Joint PDF}
+\[
+f(x,y)=\frac{\partial^2}{\partial x \partial y}F(x,y)
+\]
+
+\subsection*{4. Joint CDF (Discrete Case)}
+\[
+F(x,y)=\sum_{x_i \le x} \sum_{y_j \le y} p(x_i,y_j)
+\]
+
+\section*{Examples}
+
+\subsection*{Example 1}
+\[
+P(i,j)=\frac{1}{36}
+\]
+
+\subsection*{Example 2}
+\[
+f(x,y)=4xy,\quad 0\le x\le1,\ 0\le y\le1
+\]
+
+\[
+A=\{X<0.5,\ Y>0.5\}
+\]
+
+\[
+P(A)=\int_0^{0.5} \int_{0.5}^1 4xy\,dy\,dx
+\]
+
+\[
+\int_{0.5}^1 4xy\,dy = 4x\left[\frac{y^2}{2}\right]_{0.5}^1
+\]
+
+\[
+= 4x \cdot \frac{1-0.25}{2} = 2x(0.75) = \frac{3}{2}x
+\]
+
+\[
+P(A)=\int_0^{0.5} \frac{3}{2}x\,dx
+\]
+
+\[
+= \frac{3}{2}\cdot \frac{x^2}{2}\Big|_0^{0.5}
+= \frac{3}{4}(0.25)=\frac{3}{16}
+\]
+
+\section*{Key Results}
+
+\[
+p(x_i,y_j)=P(X=x_i,Y=y_j)
+\]
+
+\[
+F(x,y)=P(X\le x, Y\le y)
+\]
+
+\[
+F(x,y)=\int\int f(x,y)
+\]
+
+\[
+F(x,y)=\sum\sum p(x,y)
+\]
+
+\[
+f(x,y)=\frac{\partial^2}{\partial x \partial y}F(x,y)
+\]
+
+\end{document}

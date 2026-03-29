@@ -1,0 +1,264 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{titlesec}
+
+\geometry{margin=1in}
+\title{\textbf{Lecture 15--17}}
+\date{}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{CSE400 --- Lecture 15--17 Scribe}}\\[10pt]
+    {\large Instructor: Prof.\ Dhaval Patel, PhD}\\[5pt]
+    {\normalsize March 10, 2026}
+\end{center}
+
+\vspace{1em}
+\hrule
+\vspace{1.5em}
+
+\section{Overview}
+
+\begin{itemize}
+    \item Why Study Joint Random Variables
+    \item Discrete Case
+    \begin{itemize}
+        \item Joint PMF Table Representation
+        \item Example: Rolling Two Dice
+    \end{itemize}
+    \item Continuous Case
+    \begin{itemize}
+        \item Geometric Interpretation
+        \item Worked Example
+    \end{itemize}
+    \item Joint Cumulative Distribution Function
+    \begin{itemize}
+        \item Definition of Joint CDF
+        \item Continuous Case
+        \item Discrete Case
+        \item Properties of the Joint CDF
+    \end{itemize}
+    \item Comprehensive Example
+\end{itemize}
+
+\section{Definitions and Notation}
+
+\subsection{Joint Random Variables}
+
+We are interested in \textbf{two (or more) random variables at the same time}.
+
+\textbf{Examples:}
+\begin{itemize}
+    \item Height and weight of giraffes
+    \item IQ and birthweight of children
+    \item Frequency of exercise and rate of heart disease
+    \item Air pollution level and respiratory illness rate
+    \item Number of Facebook friends and age of members
+\end{itemize}
+
+\subsection{Discrete Case -- Joint PMF}
+
+\textbf{Setup:}
+
+Suppose $X$ and $Y$ are discrete random variables.
+
+\[
+X \in \{x_1, x_2, \ldots, x_n\}, \quad
+Y \in \{y_1, y_2, \ldots, y_m\}
+\]
+
+The ordered pair $(X,Y)$ takes values in:
+
+\[
+\{(x_1,y_1), (x_1,y_2), \ldots, (x_n,y_m)\}
+\]
+
+\textbf{Definition (Joint PMF):}
+
+\[
+p(x_i, y_j) = P(X = x_i, Y = y_j)
+\]
+
+\subsection{Joint PMF Table Representation}
+
+\[
+\begin{array}{c|cccc}
+X \backslash Y & y_1 & y_2 & \cdots & y_m \\
+\hline
+x_1 & p(x_1,y_1) & p(x_1,y_2) & \cdots & p(x_1,y_m) \\
+x_2 & p(x_2,y_1) & p(x_2,y_2) & \cdots & p(x_2,y_m) \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+x_n & p(x_n,y_1) & p(x_n,y_2) & \cdots & p(x_n,y_m)
+\end{array}
+\]
+
+\textbf{Key Properties:}
+
+\[
+0 \le p(x_i, y_j) \le 1
+\]
+
+\[
+\sum_{i=1}^{n} \sum_{j=1}^{m} p(x_i, y_j) = 1
+\]
+
+\subsection{Continuous Case -- Joint PDF}
+
+If:
+\[
+X \in [a,b], \quad Y \in [c,d]
+\]
+
+Then:
+\[
+(X,Y) \in [a,b] \times [c,d]
+\]
+
+\textbf{Definition (Joint PDF):}
+
+A function $f(x,y)$ is called the joint probability density function if:
+
+\[
+P((X,Y)\text{ lies in a small rectangle of area } dx\,dy) \approx f(x,y)\,dx\,dy
+\]
+
+\textbf{Key Properties:}
+
+\[
+f(x,y) \ge 0
+\]
+
+\[
+\int_c^d \int_a^b f(x,y)\,dx\,dy = 1
+\]
+
+\textbf{Note:} $f(x,y)$ may take values greater than 1.
+
+\subsection{Joint Cumulative Distribution Function (Joint CDF)}
+
+\[
+F(x,y) = P(X \le x, Y \le y)
+\]
+
+\section{Main Results}
+
+\subsection{Joint CDF -- Continuous Case}
+
+\[
+F(x,y) = \int_c^y \int_a^x f(u,v)\,du\,dv
+\]
+
+\[
+f(x,y) = \frac{\partial^2}{\partial x \partial y} F(x,y)
+\]
+
+\subsection{Joint CDF -- Discrete Case}
+
+\[
+F(x,y) = \sum_{x_i \le x} \sum_{y_j \le y} p(x_i, y_j)
+\]
+
+\textbf{Interpretation:}
+\begin{itemize}
+    \item Add all probabilities where $x_i \le x$ and $y_j \le y$
+\end{itemize}
+
+\subsection{Properties of the Joint CDF}
+
+\begin{enumerate}
+    \item $F(x,y)$ is \textbf{non-decreasing}
+    \item 
+    \[
+    F(x,y) \to 0 \quad \text{as } (x,y) \to (-\infty, -\infty)
+    \]
+    \item 
+    \[
+    F(x,y) \to 1 \quad \text{as } (x,y) \to (\infty, \infty)
+    \]
+\end{enumerate}
+
+\section{Proofs / Derivations}
+
+\subsection{Validity of Joint PDF}
+
+\[
+\int_0^1 \int_0^1 4xy\,dx\,dy
+= \int_0^1 \left( \int_0^1 4xy\,dx \right) dy
+= \int_0^1 2y\,dy
+= \left[y^2\right]_0^1 = 1
+\]
+
+\subsection{Computation of Probability}
+
+\[
+P(A) = \int_0^{0.5} \int_{0.5}^{1} 4xy\,dy\,dx
+\]
+
+\[
+= \int_0^{0.5} \left[ 2x y^2 \right]_{0.5}^{1} dx
+= \int_0^{0.5} 2x(1 - 0.25)\,dx
+= \int_0^{0.5} \frac{3}{2}x\,dx
+\]
+
+\[
+= \frac{3}{4} x^2 \Big|_0^{0.5} = \frac{3}{16}
+\]
+
+\section{Examples}
+
+\subsection{Example: Rolling Two Dice}
+
+\textbf{Experiment:} Roll two fair dice
+
+\begin{itemize}
+    \item $X$ = value on the first die
+    \item $T$ = total (sum)
+\end{itemize}
+
+Each outcome $(i,j)$ has probability:
+
+\[
+\frac{1}{36}
+\]
+
+\textbf{Observations:}
+\begin{itemize}
+    \item Entries are either $0$ or $\frac{1}{36}$
+    \item $X$ and $T$ are \textbf{not independent}
+\end{itemize}
+
+\subsection{Example (Continuous)}
+
+Given:
+\[
+f(x,y) = 4xy, \quad 0 \le x \le 1,\; 0 \le y \le 1
+\]
+
+\begin{enumerate}
+    \item Show $f(x,y)$ is a valid joint PDF
+    \item Event:
+    \[
+    A = \{X < 0.5,\; Y > 0.5\}
+    \]
+    \item Compute $P(A)$
+\end{enumerate}
+
+Joint support: $[0,1]^2$
+
+\section{Summary}
+
+\begin{itemize}
+    \item Joint random variables describe multiple RVs simultaneously
+    \item Joint PMF: $p(x_i,y_j) = P(X=x_i, Y=y_j)$
+    \item Joint PDF: density over continuous region
+    \item Joint CDF: $F(x,y) = P(X \le x, Y \le y)$
+    \item Continuous $\rightarrow$ integration
+    \item Discrete $\rightarrow$ summation
+    \item Properties: non-decreasing, bounded in $[0,1]$
+\end{itemize}
+
+\end{document}

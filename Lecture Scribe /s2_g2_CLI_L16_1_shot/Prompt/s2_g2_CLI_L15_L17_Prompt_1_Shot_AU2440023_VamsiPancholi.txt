@@ -1,0 +1,58 @@
+EXAMPLE LECTURE SCRIBE (STRUCTURE REFERENCE):
+ lecture1.pdf 
+
+INSTRUCTION:
+Using the exact same structure and formatting as the example scribe above, generate a comprehensive lecture scribe for L15-17 based on the provided lecture materials.
+
+PURPOSE:
+This scribe will serve as a student's primary exam reference document. A student studying only this document should be able to:
+- Recall all definitions, notation, and conventions introduced
+- Reconstruct every proof and derivation step-by-step
+- Follow all example solutions with clear intermediate calculations
+- Understand how concepts build upon each other
+- Locate any result or explanation quickly
+
+CONTENT RULES:
+- Include ONLY what appears in the provided lecture materials
+- Include ALL definitions, theorems, proofs, derivations, and worked examples exactly as presented
+- Include EVERY example from the lecture with complete step-by-step solutions
+- Do NOT add external explanations, alternative proofs, or supplementary examples
+- Do NOT add commentary, study tips, or explanatory notes beyond what's in the lecture
+- Do NOT simplify or rephrase proofs—preserve the original level of detail
+- Do NOT omit any examples, even if they seem repetitive
+
+STRUCTURE REQUIREMENTS:
+Use clear section headings for each major topic. For each component:
+
+Definitions and Notation:
+- Precise mathematical statements with symbol definitions
+- Domain, range, and any assumptions/conditions
+
+Theorems and Results:
+- Clear statement separating hypothesis and conclusion
+- Step-by-step proof with each step justified
+- References to definitions used
+
+Worked Examples:
+- EVERY example from the lecture must appear
+- Problem statement followed by step-by-step solution
+- ALL intermediate calculations shown—no skipped steps
+- Final answer clearly indicated
+- Label examples sequentially (Example 1, Example 2, etc.)
+
+Derivations:
+- Show each algebraic or logical step
+- Include brief justifications for non-obvious steps
+
+Logical Flow:
+- "Recall from previous section..." statements where appropriate
+- "This leads to..." transitions showing dependencies
+- Prerequisite concepts noted before new material
+
+FORMATTING:
+- Match the example's heading hierarchy and indentation
+- Use consistent notation conventions
+- Preserve any visual structuring (boxes, spacing, etc.)
+
+MATERIALS TO PROCESS:
+L15-17.pdf

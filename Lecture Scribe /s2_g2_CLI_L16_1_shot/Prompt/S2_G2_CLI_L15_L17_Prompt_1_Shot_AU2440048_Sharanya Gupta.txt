@@ -1,0 +1,9 @@
+A lecture scribe serves as a detailed record of the lecture for exam references which includes detailed definitions and annotations, assumptions and conditions, statement of theorems or results, proofs or proof sketches, step by step derivations and worked examples only if they appear in the provided content 
+It should be the exact retelling of the lecture slides and content and no new content should be introduced. 
+
+follow the below structure for the scribe-
+header information and topic name
+Introduction and overview- it should include brief outlines of all the topics covered
+Main body content- it should include all definitions, assumptions, statements of theorems and propositions and step by step derivations and all the above mentioned content
+important notes/ remarks
+conclusion

@@ -1,0 +1,410 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bm}
+
+\geometry{margin=1in}
+
+\title{\textbf{CSE400 --- Lecture 15--17 Scribe}}
+\author{Instructor: Prof. Dhaval Patel, PhD}
+\date{March 10, 2026}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Topic:} Joint Random Variables; Joint Distributions; Joint CDF
+
+\vspace{0.5cm}
+
+%--------------------------------------------------
+
+\section{Overview and Objective}
+
+This lecture studies:
+
+\begin{enumerate}
+    \item Joint random variables
+    \item Joint probability mass function (PMF)
+    \item Joint probability density function (PDF)
+    \item Joint cumulative distribution function (CDF)
+    \item Worked examples (discrete and continuous)
+\end{enumerate}
+
+\textbf{Key Objective:}  
+Given multiple random variables, analyze their \textbf{combined behavior} and compute probabilities involving them.
+
+\textbf{Assumption:}  
+All random variables are defined on a common probability space.
+
+\vspace{0.5cm}
+
+%--------------------------------------------------
+
+\section{Why Study Joint Random Variables?}
+
+In real-world applications, we are rarely interested in a single random variable.
+
+Instead, we analyze relationships between multiple variables.
+
+\vspace{0.3cm}
+
+\subsection{Example 1: Smart Transportation}
+
+\[
+X = \text{Vehicle Speed}, \quad Y = \text{Traffic Density}
+\]
+
+\textbf{Question:} Can speed be high when density is high?
+
+\textbf{Observation:}  
+The variables are dependent (correlated).
+
+\vspace{0.2cm}
+
+\subsection{Example 2: Wireless Networks}
+
+\[
+X = \text{Signal-to-Noise Ratio (SNR)}, \quad Y = \text{Throughput}
+\]
+
+\textbf{Observation:}
+\begin{itemize}
+    \item Throughput depends on SNR
+    \item External factors (congestion) affect dependency
+\end{itemize}
+
+\vspace{0.2cm}
+
+\subsection{Example 3: Weather System}
+
+\[
+X = \text{Rainfall}, \quad Y = \text{Temperature}
+\]
+
+\vspace{0.2cm}
+
+\subsection{Example 4: Drone Delivery}
+
+\[
+X = \text{Wind Speed}, \quad Y = \text{Delivery Time}
+\]
+
+\vspace{0.2cm}
+
+\subsection{Example 5: Rolling Two Dice}
+
+\[
+X = \text{First die outcome}, \quad Y = \text{Second die outcome}
+\]
+
+This requires computation of joint probabilities such as:
+
+\[
+P(X + Y = 7), \quad P(X > Y)
+\]
+
+\vspace{0.5cm}
+
+%--------------------------------------------------
+
+\section{Discrete Case: Joint PMF}
+
+\subsection{Definition}
+
+Let $X$ and $Y$ be discrete random variables.
+
+The \textbf{joint PMF} is defined as:
+
+\[
+p_{X,Y}(x,y) = P(X = x, Y = y)
+\]
+
+\vspace{0.3cm}
+
+\subsection{Properties}
+
+\begin{enumerate}
+    \item Non-negativity:
+    \[
+    p_{X,Y}(x,y) \ge 0
+    \]
+    
+    \item Total probability:
+    \[
+    \sum_x \sum_y p_{X,Y}(x,y) = 1
+    \]
+\end{enumerate}
+
+\vspace{0.3cm}
+
+\subsection{Joint PMF Table Representation}
+
+\begin{itemize}
+    \item Rows correspond to values of $X$
+    \item Columns correspond to values of $Y$
+    \item Each cell contains $P(X=x, Y=y)$
+\end{itemize}
+
+\vspace{0.5cm}
+
+%--------------------------------------------------
+
+\section{Worked Example 1: Rolling Two Dice}
+
+\subsection{Problem Setup}
+
+Two fair dice are rolled.
+
+\[
+X = \text{value of first die}, \quad Y = \text{value of second die}
+\]
+
+\vspace{0.3cm}
+
+\subsection{Step 1: Sample Space}
+
+The sample space consists of ordered pairs:
+
+\[
+(x,y), \quad x,y \in \{1,2,3,4,5,6\}
+\]
+
+Total outcomes:
+
+\[
+6 \times 6 = 36
+\]
+
+\vspace{0.3cm}
+
+\subsection{Step 2: Joint PMF}
+
+Since dice are fair:
+
+\[
+P(X=x, Y=y) = \frac{1}{36}
+\]
+
+for all valid $(x,y)$.
+
+\vspace{0.3cm}
+
+\subsection{Step 3: Event $X + Y = 7$}
+
+List all valid outcomes:
+
+\[
+(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)
+\]
+
+Number of outcomes = 6
+
+\[
+P(X+Y=7) = \frac{6}{36} = \frac{1}{6}
+\]
+
+\vspace{0.3cm}
+
+\subsection{Step 4: Event $X > Y$}
+
+Count all pairs such that $x > y$:
+
+\[
+(2,1), (3,1), (3,2), (4,1), (4,2), (4,3),
+\]
+\[
+(5,1), (5,2), (5,3), (5,4),
+\]
+\[
+(6,1), (6,2), (6,3), (6,4), (6,5)
+\]
+
+Total = 15
+
+\[
+P(X > Y) = \frac{15}{36}
+\]
+
+\vspace{0.5cm}
+
+%--------------------------------------------------
+
+\section{Continuous Case: Joint PDF}
+
+\subsection{Definition}
+
+For continuous random variables:
+
+\[
+f_{X,Y}(x,y)
+\]
+
+is the joint probability density function.
+
+\vspace{0.3cm}
+
+\subsection{Properties}
+
+\begin{enumerate}
+    \item Non-negativity:
+    \[
+    f_{X,Y}(x,y) \ge 0
+    \]
+    
+    \item Total probability:
+    \[
+    \iint_{-\infty}^{\infty} f_{X,Y}(x,y)\,dx\,dy = 1
+    \]
+\end{enumerate}
+
+\vspace{0.3cm}
+
+\subsection{Geometric Interpretation}
+
+Probability over a region $R$:
+
+\[
+P((X,Y)\in R) = \iint_R f_{X,Y}(x,y)\,dx\,dy
+\]
+
+This corresponds to the \textbf{volume under the surface}.
+
+\vspace{0.5cm}
+
+%--------------------------------------------------
+
+\section{Worked Example 2: Continuous Case}
+
+\subsection{Step 1: Identify Region}
+
+Determine limits of integration for $x$ and $y$.
+
+\vspace{0.3cm}
+
+\subsection{Step 2: Verify PDF}
+
+Check:
+
+\[
+\iint f_{X,Y}(x,y)\,dx\,dy = 1
+\]
+
+\vspace{0.3cm}
+
+\subsection{Step 3: Compute Probability}
+
+\[
+P((X,Y)\in R) = \iint_R f_{X,Y}(x,y)\,dx\,dy
+\]
+
+\vspace{0.3cm}
+
+\subsection{Step 4: Evaluate Integral}
+
+Perform integration step-by-step using limits.
+
+\vspace{0.5cm}
+
+%--------------------------------------------------
+
+\section{Joint Cumulative Distribution Function (CDF)}
+
+\subsection{Definition}
+
+\[
+F_{X,Y}(x,y) = P(X \le x, Y \le y)
+\]
+
+\vspace{0.5cm}
+
+%--------------------------------------------------
+
+\section{Joint CDF: Continuous Case}
+
+\[
+F_{X,Y}(x,y) =
+\int_{-\infty}^{x}
+\int_{-\infty}^{y}
+f_{X,Y}(u,v)\,dv\,du
+\]
+
+\vspace{0.5cm}
+
+%--------------------------------------------------
+
+\section{Joint CDF: Discrete Case}
+
+\[
+F_{X,Y}(x,y) =
+\sum_{u \le x}
+\sum_{v \le y}
+P(X=u, Y=v)
+\]
+
+\vspace{0.5cm}
+
+%--------------------------------------------------
+
+\section{Properties of Joint CDF}
+
+\begin{enumerate}
+    \item $0 \le F_{X,Y}(x,y) \le 1$
+    
+    \item Monotonicity:
+    \[
+    F(x_1,y_1) \le F(x_2,y_2)
+    \quad \text{if } x_1 \le x_2, y_1 \le y_2
+    \]
+    
+    \item Limits:
+    \[
+    \lim_{x,y \to \infty} F_{X,Y}(x,y) = 1
+    \]
+    
+    \item Boundary behavior:
+    \[
+    \lim_{x \to -\infty \text{ or } y \to -\infty} F_{X,Y}(x,y) = 0
+    \]
+\end{enumerate}
+
+\vspace{0.5cm}
+
+%--------------------------------------------------
+
+\section{Logical Flow Summary}
+
+\begin{enumerate}
+    \item Define joint random variables
+    \item Construct joint PMF/PDF
+    \item Compute probabilities using sums/integrals
+    \item Define joint CDF
+    \item Use CDF for cumulative probabilities
+\end{enumerate}
+
+\vspace{0.5cm}
+
+%--------------------------------------------------
+
+\section{Key Results for Exams}
+
+\begin{enumerate}
+    \item Joint PMF:
+    \[
+    P(X=x, Y=y)
+    \]
+    
+    \item Joint PDF:
+    \[
+    P((X,Y)\in R) = \iint_R f_{X,Y}(x,y)\,dx\,dy
+    \]
+    
+    \item Joint CDF:
+    \[
+    F_{X,Y}(x,y) = P(X \le x, Y \le y)
+    \]
+\end{enumerate}
+
+\end{document}
