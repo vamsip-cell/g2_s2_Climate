@@ -1,0 +1,75 @@
+You are generating a HIGH-PRECISION Lecture Scribe for CLOSED-NOTES EXAM PREPARATION.
+
+I want you to generate a lecture scribe for Lecture 21–22 that can be used as a complete and final exam revision document.
+
+I am also providing a reference lecture scribe (Lecture 6).
+You must strictly match its writing style, structure, formatting, and level of detail.
+
+CORE OBJECTIVE
+
+Transform the provided lecture material into a:
+
+Conceptually complete
+Mathematically rigorous
+Logically structured
+Exam-ready document
+
+The output must be an exact reformation of the lecture content.
+
+REFERENCE CONSTRAINT (VERY IMPORTANT)
+Use the provided Lecture 6 scribe as a formatting and style reference
+Match:
+Section structure
+Heading format
+Writing style
+Level of detail
+Mathematical formatting
+Do not copy content, only replicate style and structure
+SOURCE CONSTRAINT (STRICT)
+Use only the provided Lecture 21–22 slides and any textbook content directly included in those slides
+Do not use external knowledge
+Do not add explanations, intuition, assumptions, or interpretations
+Do not expand or simplify content
+OUTPUT STRUCTURE (MANDATORY)
+
+Lecture 21–22
+
+1. Overview
+
+List all topics exactly as presented
+
+2. Definitions and Notation
+
+Include every definition, symbol, assumption
+Preserve exact wording and formatting
+
+3. Main Results
+
+Include all theorems, propositions, identities, formulas
+Maintain exact order
+Do not merge or summarize
+
+4. Proofs / Derivations
+
+Include only if present
+Write step-by-step exactly as shown
+Do not skip intermediate steps
+
+5. Examples
+
+Include only if present
+Show complete worked steps exactly as given
+
+6. Summary
+
+Include only if explicitly present in slides
+Otherwise, do not generate
+STRICT EXECUTION RULES
+Preserve exact sequence of content as in slides
+Do not omit any content
+Do not rephrase meaning
+Do not add headings outside the defined structure
+Retain all formulas, symbols, and notation exactly
+If content is repeated in slides, retain repetition
+Maintain formal academic tone suitable for university exams
+No commentary, no explanations, no additional text outside the structure
