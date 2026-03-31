@@ -1,0 +1,350 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Lecture Scribe}
+\author{Course: CSE400 – Fundamentals of Probability in Computing}
+\date{Lecture Number: 21 \& 22 \\ Topic: Inequalities and Tail Bounds \\ Date: March 24 \& 26, 2025}
+
+\begin{document}
+
+\maketitle
+
+\section*{Definitions}
+
+\textbf{1. Tail of a Random Variable}
+
+The tail of a random variable $X$ is:
+
+\[
+P(X > x)
+\]
+
+$\rightarrow$ Represents probability of rare/extreme events (large deviations).
+
+\textbf{2. Tail Event}
+
+An event of the form:
+
+\[
+P(X \ge k)
+\]
+
+$\rightarrow$ Represents large deviation from mean / overload events
+
+\textbf{3. Binomial Distribution Tail}
+
+If $X \sim \text{Binomial}(n,p)$:
+
+\[
+P(X \ge k) = \sum_{i=k}^{n} \binom{n}{i} p^i (1-p)^{n-i}
+\]
+
+\textbf{4. Poisson Distribution Tail}
+
+If $X \sim \text{Poisson}(\lambda)$:
+
+\[
+P(X \ge k) = \sum_{i=k}^{\infty} e^{-\lambda} \frac{\lambda^i}{i!}
+\]
+
+\section*{Theorems / Propositions}
+
+\textbf{1. Markov’s Inequality}
+
+For non-negative random variable $X$:
+
+\[
+P(X \ge a) \le \frac{E[X]}{a}
+\]
+
+\textbf{2. Chebyshev’s Inequality}
+
+\[
+P(|X - \mu| \ge a) \le \frac{\text{Var}(X)}{a^2}
+\]
+
+\textbf{3. Chernoff Bound (Upper Tail)}
+
+\[
+P(X \ge a) \le \min_{t > 0} \frac{E[e^{tX}]}{e^{ta}}
+\]
+
+\textbf{4. Chernoff Bound (Lower Tail)}
+
+\[
+P(X \le a) \le \min_{t < 0} \frac{E[e^{tX}]}{e^{ta}}
+\]
+
+\section*{Proofs}
+
+\textbf{1. Proof of Markov’s Inequality (Idea)}
+
+Start from expectation:
+
+\[
+E[X] = \sum_x x \cdot p_X(x)
+\]
+
+Consider only values where $X \ge a$:
+
+\[
+E[X] \ge \sum_{x \ge a} x \cdot p_X(x)
+\]
+
+Replace $x \ge a$ with $a$:
+
+\[
+E[X] \ge \sum_{x \ge a} a \cdot p_X(x)
+\]
+
+\[
+E[X] \ge a \cdot P(X \ge a)
+\]
+
+\[
+\Rightarrow P(X \ge a) \le \frac{E[X]}{a}
+\]
+
+\textbf{2. Proof of Chebyshev’s Inequality}
+
+Apply Markov on squared deviation:
+
+\[
+P(|X - \mu| \ge a) = P((X - \mu)^2 \ge a^2)
+\]
+
+Using Markov:
+
+\[
+\le \frac{E[(X - \mu)^2]}{a^2}
+\]
+
+\[
+= \frac{\text{Var}(X)}{a^2}
+\]
+
+\textbf{3. Proof of Chernoff Bound (Core Idea)}
+
+Step 1: Transform event
+
+\[
+P(X \ge a) = P(e^{tX} \ge e^{ta})
+\]
+
+Step 2: Apply Markov
+
+\[
+P(e^{tX} \ge e^{ta}) \le \frac{E[e^{tX}]}{e^{ta}}
+\]
+
+Step 3: Optimize over $t$
+
+\[
+P(X \ge a) \le \min_{t > 0} \frac{E[e^{tX}]}{e^{ta}}
+\]
+
+\section*{Derivations / Equations}
+
+\textbf{1. Why Tail Bounds?}
+
+Exact computation:
+
+\[
+P(X \ge k) = \sum (\text{long sums})
+\]
+
+$\rightarrow$ Computationally expensive
+
+$\rightarrow$ Use bounds:
+
+\[
+P(X \ge k) \le \text{simple expression}
+\]
+
+\textbf{2. Chernoff Bound Key Transformation}
+
+\[
+P(X \ge a) = P(e^{tX} \ge e^{ta})
+\]
+
+\textbf{3. Moment Generating Function (Poisson Case)}
+
+For $X \sim \text{Poisson}(\lambda)$:
+
+\[
+E[e^{tX}] = e^{\lambda (e^t - 1)}
+\]
+
+\textbf{4. Chebyshev on Binomial Example}
+
+\[
+X \sim \text{Binomial}(n, \tfrac{1}{2}), \quad \mu = \tfrac{n}{2}, \quad \text{Var}(X) = \tfrac{n}{4}
+\]
+
+\[
+P\left(X \ge \tfrac{3n}{4}\right) \le \frac{1}{n}
+\]
+
+\section*{Examples}
+
+\textbf{Example 1: Binomial Tail (Servers)}
+
+Given:
+
+$X \sim \text{Binomial}(n,p)$
+
+Find:
+
+$P(X \ge k)$
+
+Solution:
+
+\[
+P(X \ge k) = \sum_{i=k}^{n} \binom{n}{i} p^i (1-p)^{n-i}
+\]
+
+\textbf{Example 2: Poisson Tail (Arrivals)}
+
+Given:
+
+$X \sim \text{Poisson}(\lambda)$
+
+Find:
+
+$P(X \ge k)$
+
+Solution:
+
+\[
+P(X \ge k) = \sum_{i=k}^{\infty} e^{-\lambda} \frac{\lambda^i}{i!}
+\]
+
+\textbf{Example 3: Markov Inequality (Coin Toss)}
+
+\[
+P\left(X \ge \tfrac{3n}{4}\right) \le \frac{2}{3}
+\]
+
+\textbf{Example 4: Income Distribution (Markov)}
+
+\[
+\le \frac{10000}{50000} = 0.2
+\]
+
+\textbf{Example 5: Exam Grades (Markov)}
+
+\[
+\le \frac{70}{90} = \frac{7}{9} \approx 0.778
+\]
+
+\textbf{Example 6: Server Load (Markov)}
+
+\[
+\le \frac{5000}{20000} = \frac{1}{4}
+\]
+
+\textbf{Example 7: Chebyshev (Exam Scores)}
+
+\[
+\le \frac{10^2}{30^2} = \frac{1}{9}
+\]
+
+\textbf{Example 8: Chebyshev (Grades)}
+
+\[
+\mu = 70, \sigma = 5 \Rightarrow \sigma^2 = 25
+\]
+
+\[
+P(|X - 70| \ge 20) \le \frac{25}{400} = \frac{1}{16}
+\]
+
+\[
+P(X \ge 90) \le 0.0625
+\]
+
+\textbf{Example 9: Chebyshev (Network Latency)}
+
+\[
+\le \frac{16}{400} = \frac{1}{25}
+\]
+
+Result:
+
+$\le 0.04$
+
+\section*{Remarks}
+
+Tail probabilities = rare but important events
+
+Exact computation = complex sums
+
+Bounds give:
+
+Simplicity
+
+Guarantees
+
+Progression:
+
+Markov $\rightarrow$ weak
+
+Chebyshev $\rightarrow$ better
+
+Chernoff $\rightarrow$ strongest (exponential decay)
+
+\section*{Assumptions}
+
+Markov: $X \ge 0$
+
+Chebyshev: finite mean and variance
+
+Chernoff:
+
+Exponential moments exist
+
+Independence (in many applications)
+
+\section*{Special Cases}
+
+Markov uses only mean $\rightarrow$ weakest
+
+Chebyshev uses variance $\rightarrow$ tighter
+
+Chernoff uses exponential $\rightarrow$ tightest
+
+\section*{Summary}
+
+Tail = probability of extreme deviation
+
+Direct computation = infeasible
+
+Inequalities provide upper bounds
+
+Increasing strength:
+
+\[
+\text{Markov} < \text{Chebyshev} < \text{Chernoff}
+\]
+
+\section*{Key Results}
+
+\[
+P(X \ge a) \le \frac{E[X]}{a}
+\]
+
+\[
+P(|X - \mu| \ge a) \le \frac{\text{Var}(X)}{a^2}
+\]
+
+\[
+P(X \ge a) \le \min_{t > 0} \frac{E[e^{tX}]}{e^{ta}}
+\]
+
+Chernoff gives exponential decay bounds
+
+Best bound achieved by optimizing $t$
+
+\end{document}
