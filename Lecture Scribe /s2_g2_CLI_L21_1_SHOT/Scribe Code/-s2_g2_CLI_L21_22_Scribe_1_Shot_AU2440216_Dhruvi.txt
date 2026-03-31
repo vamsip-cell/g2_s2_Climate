@@ -1,0 +1,253 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+
+\title{Lecture 21--22 Scribe}
+\date{}
+\maketitle
+
+\section*{1. Overview}
+Tail and motivation of tail bounds \\
+Markov’s Inequality \\
+Definition and Proof \\
+Examples \\
+
+Chebyshev’s Inequality \\
+Definition and Proof \\
+Examples \\
+
+Chernoff Bound and Poisson Tail \\
+Definition and Proof \\
+Examples \\
+
+Jensen’s Inequality \\
+Convex Functions \\
+Proof and Example \\
+
+Case Study and System-Level Understanding
+
+\section*{2. Definitions and Notation}
+
+\textbf{Tail of a Random Variable} \\
+Definition:
+
+\textbf{Random Variables} \\
+Binomial: \\
+Poisson:
+
+\textbf{Mean and Variance} \\
+Mean: \\
+$P\{X > x\}$ \\
+
+$X \sim \text{Binomial}(n, p)$ \\
+$X \sim \text{Poisson}(\lambda)$ \\
+
+Variance:
+
+\textbf{Convex Function} \\
+A function $g(x)$ is convex on interval $S$ if for any $x_1, x_2 \in S$ and $\alpha \in [0,1]$:
+\[
+g(\alpha x_1 + (1-\alpha)x_2) \leq \alpha g(x_1) + (1-\alpha) g(x_2)
+\]
+
+\section*{3. Main Results}
+
+\textbf{Markov’s Inequality} \\
+For non-negative random variable $X$:
+\[
+P(X > a) \leq \frac{E[X]}{a}
+\]
+
+\textbf{Chebyshev’s Inequality}
+\[
+P(|X - \mu| \geq a) \leq \frac{\text{Var}(X)}{a^2}
+\]
+
+\textbf{Chernoff Bound (Upper Tail)}
+\[
+P(X > a) \leq \min_{t>0} \frac{E[e^{tX}]}{e^{ta}}
+\]
+
+\textbf{Chernoff Bound (Lower Tail)}
+\[
+P(X < a) \leq \min_{t<0} \frac{E[e^{tX}]}{e^{ta}}
+\]
+
+\textbf{Poisson Chernoff Bound} \\
+For $X \sim \text{Poisson}(\lambda)$:
+\[
+P(X \geq a) \leq e^{\lambda - a \ln(\lambda/a)} \left(\frac{\lambda}{a}\right)^a
+\]
+
+\textbf{Jensen’s Inequality} \\
+For convex $g$:
+\[
+E[g(X)] \geq g(E[X])
+\]
+
+Special case:
+\[
+E[X^\alpha] \geq (E[X])^\alpha
+\]
+
+\section*{4. Proofs or Derivations}
+
+\textbf{Markov’s Inequality (Proof Idea)}
+\[
+E[X] = \sum_x x \cdot p_X(x)
+\]
+\[
+\geq \sum_{x>a} x \cdot p_X(x)
+\]
+\[
+\geq a \sum_{x>a} p_X(x)
+\]
+\[
+= a \cdot P(X > a)
+\]
+\[
+\Rightarrow P(X > a) \leq \frac{E[X]}{a}
+\]
+
+\textbf{Chebyshev’s Inequality (Proof Idea)} \\
+Apply Markov on $(X - \mu)^2$:
+\[
+P(|X - \mu| > a) = P((X - \mu)^2 > a^2)
+\]
+\[
+\leq \frac{E[(X - \mu)^2]}{a^2}
+\]
+\[
+= \frac{\text{Var}(X)}{a^2}
+\]
+
+\textbf{Chernoff Bound (Derivation)}
+\[
+P(X > a) = P(e^{tX} > e^{ta})
+\]
+
+Apply Markov:
+\[
+P(e^{tX} > e^{ta}) \leq \frac{E[e^{tX}]}{e^{ta}}
+\]
+\[
+\Rightarrow P(X > a) \leq \min_{t>0} \frac{E[e^{tX}]}{e^{ta}}
+\]
+
+\textbf{Lower Tail Chernoff Derivation}
+\[
+P(X < a) = P(e^{tX} > e^{ta}), \quad t < 0
+\]
+
+Apply Markov:
+\[
+P(e^{tX} > e^{ta}) \leq \frac{E[e^{tX}]}{e^{ta}}
+\]
+\[
+\Rightarrow P(X < a) \leq \min_{t<0} \frac{E[e^{tX}]}{e^{ta}}
+\]
+
+\textbf{Poisson MGF}
+\[
+E[e^{tX}] = e^{\lambda (e^t - 1)}
+\]
+
+Substitute into Chernoff bound:
+\[
+P(X \geq a) \leq \min_{t>0} e^{\lambda(e^t - 1) - ta}
+\]
+
+Minimized at:
+\[
+t = \ln \left(\frac{\lambda}{a}\right)
+\]
+
+Final bound:
+\[
+P(X \geq a) \leq e^{\lambda - a \ln(\lambda/a)} \left(\frac{\lambda}{a}\right)^a
+\]
+
+\section*{5. Examples}
+
+\textbf{Markov Example 1: Exam Grades} \\
+Given: $E[X] = 70$, $a = 90$
+\[
+P(X > 90) \leq \frac{70}{90}
+\]
+\[
+P(X > 90) < 0.778
+\]
+
+\textbf{Markov Example 2: Server Load} \\
+Given: $E[X] = 5000$, $a = 20000$
+\[
+P(X > 20000) \leq \frac{5000}{20000}
+\]
+\[
+P(X > 20000) < 0.25
+\]
+
+\textbf{Chebyshev Example 1: Exam Grades} \\
+$\mu = 70$, $\sigma^2 = 25$ \\
+$X > 90 \Rightarrow |X - 70| > 20$
+\[
+P(X > 90) \leq P(|X - 70| > 20)
+\]
+\[
+\leq \frac{25}{20^2}
+\]
+\[
+P(X > 90) < 0.0625
+\]
+
+\textbf{Chebyshev Example 2: Network Latency} \\
+$\mu = 50$, $\sigma^2 = 16$ \\
+$[30,70] \Rightarrow |X - 50| > 20$
+\[
+P(|X - 50| > 20) \leq \frac{16}{400}
+\]
+\[
+P(|X - 50| > 20) < 0.04
+\]
+
+\textbf{Chernoff Example 1: Binomial Lower Tail} \\
+$X \sim \text{Binomial}(20, 0.5)$, $\mu = 10$
+\[
+P(X = 0)
+\]
+\[
+P(X < (1-\delta)\mu), \quad (1-\delta)\mu = 0 \Rightarrow \delta = 1
+\]
+\[
+P(X < 0) \leq e^{-\mu \delta^2 /2}
+\]
+\[
+= e^{-10/2} = e^{-5}
+\]
+\[
+P(X < 0) < 0.0067
+\]
+
+\textbf{Chernoff Example 2: Lower Tail Derivation}
+\[
+P(X < a) = P(e^{tX} > e^{ta}), \quad t < 0
+\]
+\[
+P(e^{tX} > e^{ta}) \leq \frac{E[e^{tX}]}{e^{ta}}
+\]
+\[
+\Rightarrow P(X < a) \leq \min_{t<0} \frac{E[e^{tX}]}{e^{ta}}
+\]
+
+\section*{6. Summary}
+
+Tail probability: $P(X > x)$ \\
+Exact computation is difficult $\rightarrow$ use bounds \\
+Markov: uses mean \\
+Chebyshev: uses mean and variance \\
+Chernoff: uses exponential transformation and MGF \\
+Chernoff provides tighter (exponential) bounds \\
+Jensen’s inequality relates expectations via convexity
+
+\end{document}
