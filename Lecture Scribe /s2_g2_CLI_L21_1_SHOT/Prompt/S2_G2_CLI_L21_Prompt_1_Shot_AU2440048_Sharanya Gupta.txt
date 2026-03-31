@@ -1,0 +1,7 @@
+A lecture scribe is a detailed record of the lecture for exam reference which includes detailed definitions and annotations, assumptions and conditions, statement of theorems or results, proof or proof sketches, step by step derivations and worked examples only if they appear in the given content. No new content should be introduced, only the given content(the uploaded ppt here) should be used to generate the scribe. 
+
+The scribe should the follow the given format- 
+Header information and topic name 
+Introduction and overview which includes brief outlines of all the topics covered Main body content which should include all the points mentioned above required for a scribe 
+Important notes/ remarks 
+Conclusion
