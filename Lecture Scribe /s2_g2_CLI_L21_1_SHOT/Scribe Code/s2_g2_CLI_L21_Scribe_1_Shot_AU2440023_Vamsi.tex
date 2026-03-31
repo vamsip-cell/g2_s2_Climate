@@ -1,0 +1,187 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{\textbf{CSE400 — Fundamentals of Probability in Computing}\\
+Lecture 21–22: Inequalities and Tail Bounds}
+\author{Instructor: Dhaval Patel, PhD}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+These notes summarize the technical content of Lectures 21–22. The focus is on \textbf{tail bounds} and inequalities used to bound probabilities of extreme events.
+
+\section{Motivation: Tail Bounds}
+
+\subsection*{Definition (Tail Probability)}
+For a random variable $X$:
+\[
+\Pr(X \geq t) \quad \text{or} \quad \Pr(|X - \mathbb{E}[X]| \geq t)
+\]
+
+\subsection*{Purpose}
+\begin{itemize}
+\item Quantify rare events
+\item Bound worst-case deviations
+\item Used in system design
+\end{itemize}
+
+\section{Markov’s Inequality}
+
+\subsection*{Definition}
+Let $X \geq 0$. For any $a > 0$:
+\[
+\Pr(X \geq a) \leq \frac{\mathbb{E}[X]}{a}
+\]
+
+\subsection*{Proof}
+\[
+\mathbb{E}[X] = \sum_x x \Pr(X = x)
+\]
+\[
+\mathbb{E}[X] \geq \sum_{x \geq a} x \Pr(X = x)
+\]
+\[
+\mathbb{E}[X] \geq \sum_{x \geq a} a \Pr(X = x)
+\]
+\[
+\mathbb{E}[X] \geq a \Pr(X \geq a)
+\]
+\[
+\Pr(X \geq a) \leq \frac{\mathbb{E}[X]}{a}
+\]
+
+\subsection*{Example 1}
+Given $\mathbb{E}[X] = 10$, find $\Pr(X \geq 20)$.
+
+\textbf{Solution:}
+\[
+\Pr(X \geq 20) \leq \frac{10}{20} = 0.5
+\]
+
+\textbf{Final Answer:} $0.5$
+
+\section{Chebyshev’s Inequality}
+
+\subsection*{Definition}
+For random variable $X$ with mean $\mu$ and variance $\sigma^2$:
+\[
+\Pr(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}
+\]
+
+\subsection*{Proof}
+Let $Y = (X - \mu)^2$.
+
+Using Markov:
+\[
+\Pr((X - \mu)^2 \geq k^2\sigma^2) \leq \frac{\mathbb{E}[(X - \mu)^2]}{k^2\sigma^2}
+\]
+
+Since $\mathbb{E}[(X - \mu)^2] = \sigma^2$:
+\[
+\Pr(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}
+\]
+
+\subsection*{Example 2}
+Given $\mu = 50$, $\sigma = 5$, find:
+\[
+\Pr(|X - 50| \geq 10)
+\]
+
+\textbf{Solution:}
+\[
+k = \frac{10}{5} = 2
+\]
+\[
+\Pr(|X - 50| \geq 10) \leq \frac{1}{4}
+\]
+
+\textbf{Final Answer:} $0.25$
+
+\section{Chernoff Bound and Poisson Tail}
+
+\subsection*{Definition}
+For independent random variables:
+\[
+\Pr(X \geq (1+\delta)\mu) \leq e^{-\text{function of } \delta \cdot \mu}
+\]
+
+\subsection*{Key Idea}
+\begin{itemize}
+\item Uses moment generating functions
+\item Stronger than Chebyshev
+\item Exponential decay
+\end{itemize}
+
+\subsection*{Example 3}
+\textbf{Solution:}
+\[
+\Pr(X \geq (1+\delta)\mu) \leq e^{-c\mu}
+\]
+
+\textbf{Final Answer:} Exponential bound
+
+\section{Jensen’s Inequality}
+
+\subsection*{Definition}
+Let $\phi$ be convex:
+\[
+\phi(\mathbb{E}[X]) \leq \mathbb{E}[\phi(X)]
+\]
+
+\subsection*{Convex Function}
+\[
+\phi(\lambda x + (1-\lambda)y) \leq \lambda \phi(x) + (1-\lambda)\phi(y)
+\]
+
+\subsection*{Proof}
+\[
+\phi\left(\sum p_i x_i\right) \leq \sum p_i \phi(x_i)
+\]
+\[
+\phi(\mathbb{E}[X]) \leq \mathbb{E}[\phi(X)]
+\]
+
+\subsection*{Example 4}
+Show:
+\[
+(\mathbb{E}[X])^2 \leq \mathbb{E}[X^2]
+\]
+
+\textbf{Solution:}
+Let $\phi(x) = x^2$.
+
+\[
+(\mathbb{E}[X])^2 \leq \mathbb{E}[X^2]
+\]
+
+\textbf{Final Answer:} Proven
+
+\section{Case Study: Worst-Case Demand}
+
+\subsection*{Approach}
+\begin{itemize}
+\item Markov: coarse bound
+\item Chebyshev: variance-based
+\item Chernoff: tight exponential bound
+\end{itemize}
+
+\subsection*{Interpretation}
+Used for server capacity planning and reliability.
+
+\section{Summary}
+
+\begin{itemize}
+\item Markov uses expectation
+\item Chebyshev uses variance
+\item Chernoff gives exponential bounds
+\item Jensen relates convexity and expectation
+\end{itemize}
+
+\end{document}
