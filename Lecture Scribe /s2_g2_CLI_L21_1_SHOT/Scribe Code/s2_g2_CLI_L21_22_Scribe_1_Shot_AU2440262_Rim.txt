@@ -1,0 +1,297 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{titlesec}
+
+\geometry{margin=1in}
+\title{\textbf{Lecture 21--22}}
+\date{}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{CSE400 --- Lecture 21--22 Scribe}}\\[10pt]
+    {\large Instructor: Prof.\ Dhaval Patel, PhD}\\[5pt]
+    {\normalsize March 10, 2026}
+\end{center}
+
+\vspace{1em}
+\hrule
+\vspace{1.5em}
+
+\section{Overview}
+
+\begin{itemize}
+    \item Tail and Motivation of Tail Bound
+    \item Markov’s Inequality
+    \begin{itemize}
+        \item Definition and Proof
+        \item Example
+    \end{itemize}
+    \item Chebyshive’s Inequality
+    \begin{itemize}
+        \item Definition and Proof
+        \item Example
+    \end{itemize}
+    \item Chernof Bound and Poison Tail
+    \begin{itemize}
+        \item Definition and Proof
+        \item Example
+    \end{itemize}
+    \item Jensen’s Inequality
+    \item Convex Functions
+    \item Proof and Example
+    \item Case Study and System Level Understanding 
+\end{itemize}
+
+\section{Definitions and Notation}
+
+\subsection*{Tail of a Random Variable}
+
+The tail of a random variable ( X ) is
+
+\[
+P(X > x)
+\]
+
+\subsection*{Binomial Distribution (Running Example)}
+
+\[
+X \sim \text{Binomial}(n, p)
+\]
+
+\subsection*{Poisson Distribution (Tail Example)}
+
+\[
+X \sim \text{Poisson}(\lambda)
+\]
+
+\subsection*{Mean}
+
+\[
+\mu = E[X]
+\]
+
+\subsection*{Variance}
+
+\[
+\text{Var}(X)
+\]
+
+\section{Main Results}
+
+\subsection*{Markov’s Inequality}
+
+\[
+P(X \geq a) \leq \frac{E[X]}{a}
+\]
+
+\subsection*{Chebyshev’s Inequality}
+
+\[
+P(|X - \mu| \geq a) \leq \frac{\text{Var}(X)}{a^2}
+\]
+
+\subsection*{Chernoff Bound (Core Transformation)}
+
+\[
+P(X \geq a) = P(e^{tX} \geq e^{ta})
+\]
+
+Applying Markov:
+
+\[
+P(e^{tX} \geq e^{ta}) \leq \frac{E[e^{tX}]}{e^{ta}}
+\]
+
+\subsection*{Chernoff Bound (Final Form)}
+
+\[
+P(X \geq a) \leq \min_{t > 0} \left\{ \frac{E[e^{tX}]}{e^{ta}} \right\}
+\]
+
+\section{Proofs / Derivations}
+
+\subsection*{Proof Idea: Markov’s Inequality}
+
+\[
+E[X] = \sum_{x=0}^{\infty} x \cdot p_X(x)
+\]
+
+\[
+\geq \sum_{x=a}^{\infty} x \cdot p_X(x)
+\]
+
+\[
+\geq \sum_{x=a}^{\infty} a \cdot p_X(x)
+\]
+
+\[
+= a \cdot P(X \geq a)
+\]
+
+Thus,
+
+\[
+P(X \geq a) \leq \frac{E[X]}{a}
+\]
+
+\subsection*{Proof Idea: Chebyshev’s Inequality}
+
+Apply Markov on $((X - \mu)^2)$:
+
+\[
+P(|X - \mu| \geq a) = P((X - \mu)^2 \geq a^2)
+\]
+
+\[
+\leq \frac{E[(X - \mu)^2]}{a^2}
+\]
+
+\[
+= \frac{\text{Var}(X)}{a^2}
+\]
+
+\subsection*{Chernoff Bound Derivation}
+
+Key transformation:
+
+\[
+P(X \geq a) = P(e^{tX} \geq e^{ta})
+\]
+
+Apply Markov:
+
+\[
+P(e^{tX} \geq e^{ta}) \leq \frac{E[e^{tX}]}{e^{ta}}
+\]
+
+Since $( e^{tX} \geq 0 )$, Markov applies.
+
+Final bound:
+
+\[
+P(X \geq a) \leq \min_{t > 0} \left\{ \frac{E[e^{tX}]}{e^{ta}} \right\}
+\]
+
+\section{Examples}
+
+\subsection*{Tail Example 1 (Binomial)}
+
+\[
+X \sim \text{Binomial}(n, p)
+\]
+
+\[
+P(X \geq k) = \sum_{i=k}^{n} \binom{n}{i} p^i (1-p)^{n-i}
+\]
+
+\subsection*{Tail Example 2 (Poisson)}
+
+\[
+X \sim \text{Poisson}(\lambda)
+\]
+
+\[
+P(X \geq k) = \sum_{i=k}^{\infty} e^{-\lambda} \frac{\lambda^i}{i!}
+\]
+
+\subsection*{Markov Inequality on Running Example}
+
+\[
+X = \text{Number of heads} \sim \text{Binomial}(n, 1/2)
+\]
+
+\[
+\mu = E[X] = \frac{n}{2}
+\]
+
+\[
+P\left(X \geq \frac{3n}{4}\right) \leq \frac{E[X]}{3n/4}
+= \frac{n/2}{3n/4} = \frac{2}{3}
+\]
+
+\subsection*{Markov Real-Life Example}
+
+\[
+E[X] = 10,000
+\]
+
+\[
+P(X \geq 50,000) \leq \frac{10,000}{50,000} = 0.2
+\]
+
+\subsection*{Markov Solved Example 1}
+
+\[
+\mu = 70,\quad a = 90
+\]
+
+\[
+P(X \geq 90) \leq \frac{70}{90} = \frac{7}{9}
+\]
+
+\subsection*{Markov Solved Example 2}
+
+\[
+\mu = 5,000,\quad a = 20,000
+\]
+
+\[
+P(X \geq 20,000) \leq \frac{5,000}{20,000} = \frac{1}{4}
+\]
+
+\subsection*{Chebyshev on Running Example}
+
+\[
+X \sim \text{Binomial}(n, 1/2),\quad \mu = \frac{n}{2},\quad \text{Var}(X) = \frac{n}{4}
+\]
+
+\[
+P\left(X \geq \frac{3n}{4}\right)
+= P\left(|X - \frac{n}{2}| \geq \frac{n}{4}\right)
+\leq \frac{n/4}{(n/4)^2}
+= \frac{4}{n}
+\]
+
+\subsection*{Chebyshev Real-Life Example}
+
+\[
+\mu = 70,\quad \sigma = 10
+\]
+
+\[
+P(|X - 70| \geq 30) \leq \frac{10^2}{30^2} = \frac{1}{9}
+\]
+
+\subsection*{Chebyshev Solved Example 1}
+
+\[
+\mu = 70,\quad \sigma = 5 \Rightarrow \sigma^2 = 25
+\]
+
+\[
+P(X \geq 90) \leq P(|X - 70| \geq 20)
+\]
+
+\[
+\leq \frac{25}{400} = \frac{1}{16}
+\]
+
+\subsection*{Chebyshev Solved Example 2}
+
+\[
+\mu = 50,\quad \sigma^2 = 16
+\]
+
+\[
+P(|X - 50| \geq 20) \leq \frac{16}{400} = \frac{1}{25}
+\]
+
+\section{Summary}
+
+(Not explicitly provided in slides)
+
+\end{document}
